@@ -37,8 +37,14 @@ namespace Down2Jam.Manager
                     _currentForklift.ReceiveInput(_lastRecordedMove);
                 }
 
+                foreach (var fl in _oldForklifts)
+                {
+                    fl.TryActAI(TimerManager.Instance.Timer);
+                }
+
                 if (Vector2.Distance(_currentForklift.transform.position, ObjectiveManager.Instance.CurrentOutput.position) < .5f)
                 {
+                    _currentForklift.Stop();
                     TimerManager.Instance.StopTimer();
                     InputManager.Instance.ResetMov();
                     _oldForklifts.Add(_currentForklift);

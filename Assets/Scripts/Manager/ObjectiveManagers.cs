@@ -13,6 +13,9 @@ namespace Down2Jam.Manager
         [SerializeField]
         private OrderInfo[] _orders;
 
+        [SerializeField]
+        private GameObject _outputHint;
+
         private int _orderIndex;
 
         public OrderInfo CurrentOrder => _orders[_orderIndex];
@@ -37,6 +40,7 @@ namespace Down2Jam.Manager
         {
             CurrentInput = _inputs[CurrentOrder.Input];
             CurrentOutput = _outputs[CurrentOrder.Output];
+            _outputHint.transform.position = CurrentOutput.position;
         }
     }
 }

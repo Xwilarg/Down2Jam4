@@ -38,8 +38,14 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Hint
+    uniqueID: 4241944831
+    locked: 0
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Forklift
+    uniqueID: 2113072931
     locked: 0
   m_RenderingLayers:
   - Default

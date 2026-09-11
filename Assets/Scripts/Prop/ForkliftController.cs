@@ -1,6 +1,7 @@
 ﻿using Down2Jam.Manager;
 using NsfwDelivery.SO;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Down2Jam.Prop
@@ -25,6 +26,21 @@ namespace Down2Jam.Prop
         private void Update()
         {
             _rb.linearVelocity = transform.up * _mov.y * LinearSpeed;
+        }
+
+        public void TryActAI(float timer)
+        {
+            var inputTarget = _inputs.FirstOrDefault(x => x.Timer >= timer);
+            if (inputTarget == null) return;
+
+            _mov = inputTarget.Movement;
+            _rb.angularVelocity = _mov.x * -AngularSpeed;
+        }
+
+        public void Stop()
+        {
+            _rb.linearVelocity = Vector2.zero;
+            ReceiveInput(Vector2.zero);
         }
 
         public void ReceiveInput(Vector2 mov)
