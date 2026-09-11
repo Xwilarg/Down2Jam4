@@ -1,8 +1,10 @@
 ﻿using Ink.Runtime;
 using Ink.UnityIntegration;
+using NsfwDelivery.SO;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace Down2Jam.Manager
 {
@@ -26,7 +28,10 @@ namespace Down2Jam.Manager
         private TMP_Text _name, _nameSubtitle;
 
         [SerializeField]
-        private GameObject _sticker;
+        private Image _sticker, _body;
+
+        [SerializeField]
+        private VNSpeakerInfo[] _speakers;
 
         private Story _story;
 
@@ -34,37 +39,13 @@ namespace Down2Jam.Manager
 
         private void Awake()
         {
+            Instance = this;
+
             _story = new(_intro.storyJson);
             _nameContainer.SetActive(false);
-            _sticker.SetActive(false);
-            UpdateDisplay();
-        }
-
-        private void SetSpeaker(string name)
-        {
-            _nameContainer.SetActive(true);
-            if (name == "zirk")
-            {
-                _name.text = "Mr. Z";
-                _nameSubtitle.text = "Vice President";
-            }
-            else if (name == "nano")
-            {
-                _name.text = "Mr. N";
-                _nameSubtitle.text = "President";
-            }
-            else if (name == "minipi")
-            {
-                _name.text = "Minipi";
-                _nameSubtitle.text = "Devoted Worker";
-            }
-            else if (name == "Estalia")
-            {
-                _name.text = "Estalia";
-                _nameSubtitle.text = "Improvised Postal Worker";
-            }
-            else
-                _nameContainer.SetActive(false);
+            _sticker.gameObject.SetActive(false);
+            _body.gameObject.SetActive(false);
+            DisplayNextDialogue();
         }
 
         private void UpdateDisplay()
@@ -78,8 +59,24 @@ namespace Down2Jam.Manager
                 switch (parts[0])
                 {
                     case "speaker":
-                        SetSpeaker(body);
+                        var target = _speakers.FirstOrDefault(x => x.ID == body);
+                        if (target != null)
+                        {
+                            _nameContainer.SetActive(true);
+                            _name.text = target.name;
+                            _nameSubtitle.text = target.Subtitle;
+                            _body.gameObject.SetActive(target.BodySprite != null);
+                            _body.sprite = target.BodySprite;
+                            _sticker.sprite = target.StickerSprite;
+                        }
+                        else
+                        {
+                            _nameContainer.SetActive(false);
+                            _body.gameObject.SetActive(false);
+                        }
                         break;
+
+                    case "sticker": _sticker.gameObject.SetActive(body == "on"); break;
 
                     case "time": break;
 
