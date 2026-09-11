@@ -30,7 +30,7 @@ namespace Down2Jam.Prop
 
         public void TryActAI(float timer)
         {
-            var inputTarget = _inputs.FirstOrDefault(x => x.Timer >= timer);
+            var inputTarget = _inputs.LastOrDefault(x => timer >= x.Timer);
             if (inputTarget == null) return;
 
             _mov = inputTarget.Movement;

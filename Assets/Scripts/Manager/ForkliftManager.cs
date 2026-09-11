@@ -47,7 +47,9 @@ namespace Down2Jam.Manager
                     _currentForklift.Stop();
                     TimerManager.Instance.StopTimer();
                     InputManager.Instance.ResetMov();
+                    ObjectiveManager.Instance.FulfillOrder();
                     _oldForklifts.Add(_currentForklift);
+
                     SpawnForklifts();
                 }
             }
