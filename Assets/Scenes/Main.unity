@@ -337,7 +337,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0.28190637, g: 0.3006828, b: 0.3301887, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -726,7 +726,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d541978ef3fb32e4fb3e9359ba5ede80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ForkliftManager
-  CurrentForklift: {fileID: 0}
   _forkliftPrefab: {fileID: 6811253920912766176, guid: 1ab49b046df7df34d8c00f5be31cc241, type: 3}
 --- !u!114 &1553947016
 MonoBehaviour:

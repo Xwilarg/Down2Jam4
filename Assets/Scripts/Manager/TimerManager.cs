@@ -7,6 +7,8 @@ namespace Down2Jam.Manager
     {
         public static TimerManager Instance { private set; get; }
 
+        private const float TimerMax = 10f;
+
         [SerializeField]
         private TMP_Text _timerText;
 
@@ -16,15 +18,21 @@ namespace Down2Jam.Manager
         private void Awake()
         {
             Instance = this;
+
+            _timerText.text = TimerMax.ToString();
         }
 
         private void Update()
         {
-            Timer += Time.deltaTime;
-            if (Timer > 10f)
+            if (IsActive)
             {
-                Timer = 10f;
-                IsActive = false;
+                Timer += Time.deltaTime;
+                if (Timer > TimerMax)
+                {
+                    Timer = TimerMax;
+                    IsActive = false;
+                }
+                _timerText.text = $"{TimerMax - Timer:00}";
             }
         }
 
