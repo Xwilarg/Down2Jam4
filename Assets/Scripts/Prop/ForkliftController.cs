@@ -1,4 +1,5 @@
 ﻿using Down2Jam.Manager;
+using NsfwDelivery.SO;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,6 +14,8 @@ namespace Down2Jam.Prop
         private Rigidbody2D _rb;
 
         private Vector2 _mov;
+
+        public OrderInfo AssignedOrder { set; get; }
 
         private void Awake()
         {

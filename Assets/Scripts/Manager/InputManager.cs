@@ -25,6 +25,11 @@ namespace Down2Jam.Manager
             }
         }
 
+        public void ResetMov()
+        {
+            Mov = Vector2.zero;
+        }
+
         public void OnMove(InputAction.CallbackContext value)
         {
             Mov = value.ReadValue<Vector2>();

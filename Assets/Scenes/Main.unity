@@ -129,7 +129,7 @@ GameObject:
   m_Component:
   - component: {fileID: 42951524}
   m_Layer: 0
-  m_Name: Inputs (1)
+  m_Name: Outputs
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -996,6 +996,10 @@ MonoBehaviour:
   - {fileID: 1417728201}
   - {fileID: 1723866501}
   - {fileID: 322080202}
+  _orders:
+  - {fileID: 11400000, guid: a0fec8e08bf852646954b5580b8ff04c, type: 2}
+  - {fileID: 11400000, guid: 3884e7b25740fbf4ea5014012a484a53, type: 2}
+  - {fileID: 11400000, guid: ba9d5d30c53408b46add0dcebc81bb06, type: 2}
 --- !u!1 &1560746880
 GameObject:
   m_ObjectHideFlags: 0

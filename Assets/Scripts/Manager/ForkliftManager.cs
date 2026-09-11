@@ -1,4 +1,6 @@
 using Down2Jam.Prop;
+using NUnit.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Down2Jam.Manager
@@ -10,14 +12,19 @@ namespace Down2Jam.Manager
         private ForkliftController _currentForklift;
         private Vector2 _lastRecordedMove;
 
+        private readonly List<ForkliftController> _oldForklifts = new();
+
         [SerializeField]
         private GameObject _forkliftPrefab;
 
         private void Awake()
         {
             Instance = this;
+        }
 
-            SpawnForklift();
+        private void Start()
+        {
+            SpawnForklifts();
         }
 
         private void Update()
@@ -29,13 +36,29 @@ namespace Down2Jam.Manager
                     _lastRecordedMove = InputManager.Instance.Mov;
                     _currentForklift.ReceiveInput(_lastRecordedMove);
                 }
+
+                if (Vector2.Distance(_currentForklift.transform.position, ObjectiveManager.Instance.CurrentOutput.position) < .5f)
+                {
+                    TimerManager.Instance.StopTimer();
+                    InputManager.Instance.ResetMov();
+                    _oldForklifts.Add(_currentForklift);
+                    SpawnForklifts();
+                }
             }
         }
 
-        public void SpawnForklift()
+        public void SpawnForklifts()
         {
             var go = Instantiate(_forkliftPrefab, transform.position, Quaternion.identity);
+            go.transform.position = ObjectiveManager.Instance.CurrentInput.position;
             _currentForklift = go.GetComponent<ForkliftController>();
+            _currentForklift.AssignedOrder = ObjectiveManager.Instance.CurrentOrder;
+
+            foreach (var fl in _oldForklifts)
+            {
+                fl.transform.position = ObjectiveManager.Instance.GetInput(fl.AssignedOrder).position;
+                fl.transform.rotation = Quaternion.identity;
+            }
         }
     }
 }

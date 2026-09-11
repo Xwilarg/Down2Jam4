@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 4163050625318095184}
   - component: {fileID: 8292928354745976422}
   - component: {fileID: 1489302064674131098}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Forklift
   m_TagString: Untagged
   m_Icon: {fileID: 0}

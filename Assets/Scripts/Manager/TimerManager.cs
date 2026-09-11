@@ -41,5 +41,10 @@ namespace Down2Jam.Manager
             IsActive = true;
             Timer = 0f;
         }
+
+        public void StopTimer()
+        {
+            IsActive = false;
+        }
     }
 }
