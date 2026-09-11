@@ -1,4 +1,5 @@
-﻿using NsfwDelivery.SO;
+﻿using Down2Jam.Prop;
+using NsfwDelivery.SO;
 using UnityEngine;
 
 namespace Down2Jam.Manager
@@ -20,7 +21,7 @@ namespace Down2Jam.Manager
 
         public OrderInfo CurrentOrder => _orders[_orderIndex];
         public Transform CurrentInput { private set; get; }
-        public Transform CurrentOutput { private set; get; }
+        public Output CurrentOutput { private set; get; }
 
         public Transform GetInput(OrderInfo order) => _inputs[order.Input];
 
@@ -39,8 +40,8 @@ namespace Down2Jam.Manager
         private void UpdateInternal()
         {
             CurrentInput = _inputs[CurrentOrder.Input];
-            CurrentOutput = _outputs[CurrentOrder.Output];
-            _outputHint.transform.position = CurrentOutput.position;
+            CurrentOutput = _outputs[CurrentOrder.Output].GetComponent<Output>();
+            _outputHint.transform.position = CurrentOutput.transform.position;
         }
     }
 }

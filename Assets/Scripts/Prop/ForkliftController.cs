@@ -2,6 +2,7 @@
 using NsfwDelivery.SO;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Schema;
 using UnityEngine;
 
 namespace Down2Jam.Prop
@@ -16,7 +17,17 @@ namespace Down2Jam.Prop
 
         private Vector2 _mov;
 
-        public OrderInfo AssignedOrder { set; get; }
+        private OrderInfo _assignedOrder;
+        public Output TargetOutput { private set; get; }
+        public OrderInfo AssignedOrder
+        {
+            set
+            {
+                _assignedOrder = value;
+                TargetOutput = ObjectiveManager.Instance.CurrentOutput;
+            }
+            get => _assignedOrder;
+        }
 
         private void Awake()
         {

@@ -1,6 +1,7 @@
 using Down2Jam.Prop;
 using NUnit.Framework;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Down2Jam.Manager
@@ -42,7 +43,7 @@ namespace Down2Jam.Manager
                     fl.TryActAI(TimerManager.Instance.Timer);
                 }
 
-                if (Vector2.Distance(_currentForklift.transform.position, ObjectiveManager.Instance.CurrentOutput.position) < .5f)
+                if (ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside))
                 {
                     _currentForklift.Stop();
                     TimerManager.Instance.StopTimer();
@@ -65,7 +66,7 @@ namespace Down2Jam.Manager
 
             foreach (var fl in _oldForklifts)
             {
-                fl.transform.position = ObjectiveManager.Instance.GetInput(fl.AssignedOrder).position;
+                fl.transform.position = ObjectiveManager.Instance.GetInput(fl.AssignedOrder).transform.position;
                 fl.transform.rotation = Quaternion.identity;
             }
         }
