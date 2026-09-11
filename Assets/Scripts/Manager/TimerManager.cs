@@ -45,6 +45,7 @@ namespace Down2Jam.Manager
         public void StopTimer()
         {
             IsActive = false;
+            _timerText.text = TimerMax.ToString();
         }
     }
 }

@@ -9,30 +9,34 @@ namespace Down2Jam.Manager
 
         public Vector2 Mov { private set; get; }
 
+        private bool _isReadyToStart = true;
+
         private void Awake()
         {
             Instance = this;
         }
 
-        private void Update()
-        {
-            if (Mov.magnitude > 0f)
-            {
-                if (!TimerManager.Instance.IsActive)
-                {
-                    TimerManager.Instance.StartTimer();
-                }
-            }
-        }
-
         public void ResetMov()
         {
             Mov = Vector2.zero;
+            _isReadyToStart = false;
         }
 
         public void OnMove(InputAction.CallbackContext value)
         {
             Mov = value.ReadValue<Vector2>();
+
+            if (Mov.magnitude > 0f)
+            {
+                if (_isReadyToStart && !TimerManager.Instance.IsActive)
+                {
+                    TimerManager.Instance.StartTimer();
+                }
+            }
+            else
+            {
+                _isReadyToStart = true;
+            }
         }
     }
 }
