@@ -7,6 +7,9 @@ namespace Down2Jam.Prop
         public float Timer;
         public Vector2 Movement;
 
-        public Vector2 Position; // For adjustement
+        // For adjustement
+        public bool IsAdjustement;
+        public Vector2 Position;
+        public float Rotation;
     }
 }

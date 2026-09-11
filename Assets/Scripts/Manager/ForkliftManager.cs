@@ -1,5 +1,4 @@
 using Down2Jam.Prop;
-using NUnit.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,6 +17,8 @@ namespace Down2Jam.Manager
         [SerializeField]
         private GameObject _forkliftPrefab;
 
+        private float _refTimer;
+
         private void Awake()
         {
             Instance = this;
@@ -35,7 +36,16 @@ namespace Down2Jam.Manager
                 if (_lastRecordedMove != InputManager.Instance.Mov)
                 {
                     _lastRecordedMove = InputManager.Instance.Mov;
-                    _currentForklift.ReceiveInput(_lastRecordedMove);
+                    _currentForklift.ReceiveInput(_lastRecordedMove, false);
+                }
+                else
+                {
+                    var newTimer = TimerManager.Instance.Timer;
+                    if (newTimer - _refTimer > .05f)
+                    {
+                        _currentForklift.ReceiveInput(_lastRecordedMove, true);
+                        _refTimer = newTimer;
+                    }
                 }
 
                 foreach (var fl in _oldForklifts)
@@ -46,6 +56,8 @@ namespace Down2Jam.Manager
                 if (ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside))
                 {
                     _currentForklift.Stop();
+                    foreach (var fl in _oldForklifts) fl.Stop();
+
                     TimerManager.Instance.StopTimer();
                     InputManager.Instance.ResetMov();
                     ObjectiveManager.Instance.FulfillOrder();

@@ -2,7 +2,6 @@
 using NsfwDelivery.SO;
 using System.Collections.Generic;
 using System.Linq;
-using System.Xml.Schema;
 using UnityEngine;
 
 namespace Down2Jam.Prop
@@ -17,6 +16,7 @@ namespace Down2Jam.Prop
         private SpriteRenderer _sr;
 
         private Vector2 _mov;
+        private bool _skipAdjustements;
 
         private OrderInfo _assignedOrder;
         public Output TargetOutput { private set; get; }
@@ -44,7 +44,7 @@ namespace Down2Jam.Prop
 
         public void TryActAI(float timer)
         {
-            var inputTarget = _inputs.LastOrDefault(x => timer >= x.Timer);
+            var inputTarget = _inputs.Where(x => !_skipAdjustements || !x.IsAdjustement).LastOrDefault(x => timer >= x.Timer);
             if (inputTarget == null) return;
 
             _mov = inputTarget.Movement;
@@ -54,22 +54,33 @@ namespace Down2Jam.Prop
         public void Stop()
         {
             _rb.linearVelocity = Vector2.zero;
-            ReceiveInput(Vector2.zero);
+            ReceiveInput(Vector2.zero, false);
             TargetOutput.Grow();
             TargetOutput.Grow();
             _sr.color = Color.white;
+            _skipAdjustements = false;
         }
 
-        public void ReceiveInput(Vector2 mov)
+        public void ReceiveInput(Vector2 mov, bool isAdjustement)
         {
             _inputs.Add(new()
             {
                 Movement = mov,
                 Timer = TimerManager.Instance.Timer,
-                Position = transform.position
+                IsAdjustement = isAdjustement,
+                Position = transform.position,
+                Rotation = transform.rotation.eulerAngles.z
             });
             _mov = mov;
             _rb.angularVelocity = mov.x * -AngularSpeed;
+        }
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.collider.CompareTag("Forklift"))
+            {
+                _skipAdjustements = true;
+            }
         }
     }
 }
