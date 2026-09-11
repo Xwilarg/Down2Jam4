@@ -49,6 +49,7 @@ namespace Down2Jam.Manager
                     InputManager.Instance.ResetMov();
                     ObjectiveManager.Instance.FulfillOrder();
                     _oldForklifts.Add(_currentForklift);
+                    _lastRecordedMove = Vector2.zero;
 
                     SpawnForklifts();
                 }
