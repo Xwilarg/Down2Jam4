@@ -14,6 +14,7 @@ namespace Down2Jam.Prop
 
         private readonly List<InputInfo> _inputs = new();
         private Rigidbody2D _rb;
+        private SpriteRenderer _sr;
 
         private Vector2 _mov;
 
@@ -33,6 +34,7 @@ namespace Down2Jam.Prop
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr = GetComponentInChildren<SpriteRenderer>();
         }
 
         private void Update()
@@ -55,6 +57,7 @@ namespace Down2Jam.Prop
             ReceiveInput(Vector2.zero);
             TargetOutput.Grow();
             TargetOutput.Grow();
+            _sr.color = Color.white;
         }
 
         public void ReceiveInput(Vector2 mov)

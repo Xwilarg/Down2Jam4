@@ -16,5 +16,5 @@ You are forklift certified right?
 Pi #speaker minipi
 Is that a yes? #speaker estelia
 Pi #speaker minipi
-Well, you'll see, it's not that art, go inside and use the arrow keys to move around #speaker estelia
+Well, you'll see, it's not that hard, go inside and use the arrow keys to move around #speaker estelia
 -> END

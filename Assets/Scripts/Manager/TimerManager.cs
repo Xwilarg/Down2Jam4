@@ -1,5 +1,6 @@
 ﻿using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Down2Jam.Manager
 {
@@ -30,7 +31,7 @@ namespace Down2Jam.Manager
                 if (Timer > TimerMax)
                 {
                     Timer = TimerMax;
-                    IsActive = false;
+                    SceneManager.LoadScene("Main");
                 }
                 _timerText.text = $"{TimerMax - Timer:00}";
             }

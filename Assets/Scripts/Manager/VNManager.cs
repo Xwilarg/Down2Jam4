@@ -63,7 +63,7 @@ namespace Down2Jam.Manager
                         if (target != null)
                         {
                             _nameContainer.SetActive(true);
-                            _name.text = target.name;
+                            _name.text = target.Name;
                             _nameSubtitle.text = target.Subtitle;
                             _body.gameObject.SetActive(target.BodySprite != null);
                             _body.sprite = target.BodySprite;
