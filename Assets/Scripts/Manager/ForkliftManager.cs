@@ -7,7 +7,7 @@ namespace Down2Jam.Manager
     {
         public static ForkliftManager Instance { private set; get; }
 
-        public ForkliftController CurrentForklift;
+        private ForkliftController _currentForklift;
         private Vector2 _lastRecordedMove;
 
         [SerializeField]
@@ -27,7 +27,7 @@ namespace Down2Jam.Manager
                 if (_lastRecordedMove != InputManager.Instance.Mov)
                 {
                     _lastRecordedMove = InputManager.Instance.Mov;
-                    CurrentForklift.ReceiveInput(_lastRecordedMove);
+                    _currentForklift.ReceiveInput(_lastRecordedMove);
                 }
             }
         }
@@ -35,7 +35,7 @@ namespace Down2Jam.Manager
         public void SpawnForklift()
         {
             var go = Instantiate(_forkliftPrefab, transform.position, Quaternion.identity);
-            CurrentForklift = go.GetComponent<ForkliftController>();
+            _currentForklift = go.GetComponent<ForkliftController>();
         }
     }
 }
