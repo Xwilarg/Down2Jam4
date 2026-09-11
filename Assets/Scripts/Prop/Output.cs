@@ -17,5 +17,15 @@ namespace Down2Jam.Prop
         {
             if (collision.CompareTag("Forklift")) _insideCount--;
         }
+
+        public void Shrink()
+        {
+            GetComponent<CircleCollider2D>().radius /= 2f;
+        }
+
+        public void Grow()
+        {
+            GetComponent<CircleCollider2D>().radius *= 2f;
+        }
     }
 }

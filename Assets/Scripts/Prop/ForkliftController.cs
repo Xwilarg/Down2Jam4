@@ -25,6 +25,7 @@ namespace Down2Jam.Prop
             {
                 _assignedOrder = value;
                 TargetOutput = ObjectiveManager.Instance.CurrentOutput;
+                TargetOutput.Shrink();
             }
             get => _assignedOrder;
         }
@@ -52,6 +53,7 @@ namespace Down2Jam.Prop
         {
             _rb.linearVelocity = Vector2.zero;
             ReceiveInput(Vector2.zero);
+            TargetOutput.Grow();
         }
 
         public void ReceiveInput(Vector2 mov)
