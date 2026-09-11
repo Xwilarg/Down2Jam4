@@ -28,7 +28,7 @@ namespace Down2Jam.Manager
 
             if (Mov.magnitude > 0f)
             {
-                if (_isReadyToStart && !TimerManager.Instance.IsActive)
+                if (!VNManager.Instance.IsPlayingStory && _isReadyToStart && !TimerManager.Instance.IsActive)
                 {
                     TimerManager.Instance.StartTimer();
                 }
@@ -36,6 +36,14 @@ namespace Down2Jam.Manager
             else
             {
                 _isReadyToStart = true;
+            }
+        }
+
+        public void OnClick(InputAction.CallbackContext value)
+        {
+            if (value.phase == InputActionPhase.Started && VNManager.Instance.IsPlayingStory)
+            {
+                VNManager.Instance.DisplayNextDialogue();
             }
         }
     }
