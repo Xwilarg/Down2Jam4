@@ -6,14 +6,22 @@ namespace Down2Jam.Prop
 {
     public class ForkliftController : MonoBehaviour
     {
-        private const float Speed = 5f;
+        private const float LinearSpeed = 5f;
+        private const float AngularSpeed = 200f;
 
-        private List<InputInfo> _inputs = new();
+        private readonly List<InputInfo> _inputs = new();
         private Rigidbody2D _rb;
+
+        private Vector2 _mov;
 
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+        }
+
+        private void Update()
+        {
+            _rb.linearVelocity = transform.up * _mov.y * LinearSpeed;
         }
 
         public void ReceiveInput(Vector2 mov)
@@ -24,7 +32,8 @@ namespace Down2Jam.Prop
                 Timer = TimerManager.Instance.Timer,
                 Position = transform.position
             });
-            _rb.linearVelocity = mov * Speed;
+            _mov = mov;
+            _rb.angularVelocity = mov.x * -AngularSpeed;
         }
     }
 }
