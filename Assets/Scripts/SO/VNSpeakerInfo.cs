@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 namespace NsfwDelivery.SO
 {
@@ -11,5 +12,8 @@ namespace NsfwDelivery.SO
 
         public Sprite BodySprite;
         public Sprite StickerSprite;
+
+        [SerializeField]
+        public Dictionary<string, Sprite> Emotions;
     }
 }

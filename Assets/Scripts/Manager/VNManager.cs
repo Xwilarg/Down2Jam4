@@ -28,10 +28,12 @@ namespace Down2Jam.Manager
         private TMP_Text _name, _nameSubtitle;
 
         [SerializeField]
-        private Image _sticker, _body;
+        private Image _sticker, _body, _emotion;
 
         [SerializeField]
         private VNSpeakerInfo[] _speakers;
+
+        private VNSpeakerInfo _currSpeaker;
 
         private Story _story;
 
@@ -59,26 +61,38 @@ namespace Down2Jam.Manager
                 switch (parts[0])
                 {
                     case "speaker":
-                        var target = _speakers.FirstOrDefault(x => x.ID == body);
-                        if (target != null)
+                        _currSpeaker = _speakers.FirstOrDefault(x => x.ID == body);
+                        if (_currSpeaker != null)
                         {
                             _nameContainer.SetActive(true);
-                            _name.text = target.Name;
-                            _nameSubtitle.text = target.Subtitle;
-                            _body.gameObject.SetActive(target.BodySprite != null);
-                            _body.sprite = target.BodySprite;
-                            _sticker.sprite = target.StickerSprite;
+                            _name.text = _currSpeaker.Name;
+                            _nameSubtitle.text = _currSpeaker.Subtitle;
+                            _body.gameObject.SetActive(_currSpeaker.BodySprite != null);
+                            _body.sprite = _currSpeaker.BodySprite;
+                            _sticker.sprite = _currSpeaker.StickerSprite;
+                            _emotion.gameObject.SetActive(false);
                         }
                         else
                         {
                             _nameContainer.SetActive(false);
                             _body.gameObject.SetActive(false);
+                            _emotion.gameObject.SetActive(false);
                         }
                         break;
 
                     case "sticker": _sticker.gameObject.SetActive(body == "on"); break;
 
                     case "time": break;
+
+                    case "emotion":
+                        if (_currSpeaker.Emotions.TryGetValue(body, out var emotion))
+                        {
+                            _emotion.gameObject.SetActive(true);
+                            _emotion.sprite = emotion;
+                        }
+                        else
+                            _emotion.gameObject.SetActive(false);
+                        break;
 
                     default:
                         Debug.LogWarning($"Unknown story tag {parts[0]}");

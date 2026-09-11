@@ -17,3 +17,10 @@ MonoBehaviour:
   Subtitle: Improvised Postal Worker
   BodySprite: {fileID: 21300000, guid: 22722cee69a8f66459bb542541e661b6, type: 3}
   StickerSprite: {fileID: 0}
+  Emotions:
+  - key: annoyed
+    value: {fileID: 21300000, guid: 135f8a8e04ca7724fa07b84795e85255, type: 3}
+  - key: happy
+    value: {fileID: 21300000, guid: d7b67e3a99587c447a7cf5c4548f0e3d, type: 3}
+  - key: neutral
+    value: {fileID: 21300000, guid: dab4419640a70844187c40fe7e297886, type: 3}
