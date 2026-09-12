@@ -107,6 +107,12 @@ namespace Down2Jam.Prop
             DidExplode = false;
         }
 
+        public void ReceiveRawInput(Vector2 mov)
+        {
+            _mov = mov;
+            _rb.angularVelocity = mov.x * -AngularSpeed;
+        }
+
         public void ReceiveInput(Vector2 mov, bool isAdjustement)
         {
             _inputs.Add(new()
