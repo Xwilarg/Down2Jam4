@@ -450,7 +450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 80ef37ecb5af2974d945f5424e4d2d73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.ObjectiveManager
-  _level: {fileID: 11400000, guid: 555352c2a26891a4597e9b7fdc163b6e, type: 2}
+  _level: {fileID: 11400000, guid: 74f03270160ed854e907698b9e46dc5e, type: 2}
   _inputs:
   - {fileID: 992106704}
   _outputs:

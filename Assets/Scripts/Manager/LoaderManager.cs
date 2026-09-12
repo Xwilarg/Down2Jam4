@@ -6,6 +6,8 @@ namespace Down2Jam.Manager
 {
     public class LoaderManager : MonoBehaviour
     {
+        public static LoaderManager Instance { private set; get; }
+
         public static LevelInfo CurrentLevel { set; get; } = null;
 
         [SerializeField]
@@ -13,7 +15,10 @@ namespace Down2Jam.Manager
 
         private void Awake()
         {
-            SceneManager.LoadScene(CurrentLevel == null ? _debugInfo.Level.Name : CurrentLevel.Level.Name, LoadSceneMode.Additive);
+            Instance = this;
+
+            if (CurrentLevel == null) CurrentLevel = _debugInfo;
+            SceneManager.LoadScene(CurrentLevel.Level.Name, LoadSceneMode.Additive);
         }
     }
 }

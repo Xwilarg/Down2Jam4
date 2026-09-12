@@ -8,20 +8,18 @@ namespace Down2Jam.Manager
     {
         public static ObjectiveManager Instance { private set; get; }
 
-        [SerializeField]
-        private LevelInfo _level;
-        public LevelInfo NextLevel => _level.Next;
+        public LevelInfo NextLevel => LoaderManager.CurrentLevel.Next;
 
         [SerializeField]
         private Transform[] _inputs, _outputs;
 
         private int _orderIndex;
 
-        public OrderInfo CurrentOrder => _level.Orders[_orderIndex];
+        public OrderInfo CurrentOrder => LoaderManager.CurrentLevel.Orders[_orderIndex];
         public Transform CurrentInput { private set; get; }
         public Output CurrentOutput { private set; get; }
 
-        public bool IsLastOrder => _orderIndex == _level.Orders.Length - 1;
+        public bool IsLastOrder => _orderIndex == LoaderManager.CurrentLevel.Orders.Length - 1;
 
         public Transform GetInput(OrderInfo order) => _inputs[order.Input];
 
@@ -33,7 +31,7 @@ namespace Down2Jam.Manager
         private void Start()
         {
             UpdateInternal();
-            VNManager.Instance.PlayStory(_level.Intro);
+            VNManager.Instance.PlayStory(LoaderManager.CurrentLevel.Intro);
             ForkliftManager.Instance.SpawnForklifts();
         }
 
