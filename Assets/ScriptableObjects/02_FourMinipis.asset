@@ -17,6 +17,10 @@ MonoBehaviour:
     guid: 641649a67b24dea409d9562922e33a29
   Orders:
   - Input: 0
+    Output: 2
+  - Input: 2
     Output: 0
+  - Input: 1
+    Output: 1
   Intro: {fileID: 6231892579173505729, guid: 1825145bb2a52a448a43734f9eafa4b8, type: 3}
   Next: {fileID: 0}

@@ -17,7 +17,11 @@ namespace Down2Jam.Manager
         {
             Instance = this;
 
-            if (CurrentLevel == null) CurrentLevel = _debugInfo;
+            if (CurrentLevel == null)
+            {
+                CurrentLevel = _debugInfo;
+                VNManager.SkipIntro = false;
+            }
             SceneManager.LoadScene(CurrentLevel.Level.Name, LoadSceneMode.Additive);
         }
     }
