@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0e6e851b1ee724cb944af62dfc8ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
-  _debugInfo: {fileID: 11400000, guid: 74f03270160ed854e907698b9e46dc5e, type: 2}
+  _debugInfo: {fileID: 11400000, guid: ba621119cfcf69145aa9020424af45ca, type: 2}
 --- !u!114 &1553947021
 MonoBehaviour:
   m_ObjectHideFlags: 0
