@@ -55,6 +55,7 @@ namespace Down2Jam.Prop
         {
             _insideCount = 0;
             _hint.color = Color.black;
+            ValidationTimer = null;
         }
 
         public void Shrink()

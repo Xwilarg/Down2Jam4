@@ -93,8 +93,11 @@ namespace Down2Jam.Prop
             _rb.angularVelocity = 0f;
 
             ReceiveInput(Vector2.zero, false);
-            TargetOutput.Grow();
-            TargetOutput.Grow();
+            if (!TargetOutput.IsDeprecated)
+            {
+                TargetOutput.Grow();
+                TargetOutput.Grow();
+            }
             _sr.color = Color.white;
             _skipAdjustements = false;
             TargetOutput.IsDeprecated = true;
