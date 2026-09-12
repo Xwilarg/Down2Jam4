@@ -1,4 +1,5 @@
-﻿using TMPro;
+﻿using Down2Jam.Manager.Persistency;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -26,8 +27,11 @@ namespace Down2Jam.Manager
             _victoryPanel.SetActive(true);
 
             var avrTime = totalTime / minipiCount;
-            float timeScore = Mathf.FloorToInt(500 - (avrTime * 500f / 10f));
-            float finalScore = timeScore + 500;
+            var timeScore = Mathf.FloorToInt(500 - (avrTime * 500f / 10f));
+            var finalScore = timeScore + 500;
+
+            var levelName = LoaderManager.CurrentLevel.name;
+            PersistencyManager.Instance.SaveData.SaveScore(levelName, finalScore);
 
             _finalText.text =
                 $"Minipi Delivered: {minipiCount}\n" +
@@ -36,7 +40,8 @@ namespace Down2Jam.Manager
                 $"Average Time: {avrTime:0.0}s\n" +
                 $"+{timeScore}\n" +
                 $"\n" +
-                $"<b>Final Score: {finalScore}</b>";
+                $"<b>Final Score: {finalScore}</b>\n" +
+                $"Best Score: {PersistencyManager.Instance.SaveData.GetBestScore(levelName)}";
         }
 
         public void Retry()
