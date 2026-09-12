@@ -99,6 +99,8 @@ namespace Down2Jam.Prop
             _skipAdjustements = false;
             TargetOutput.IsDeprecated = true;
             _sr.sprite = _forkliftAI;
+
+            TargetOutput.Clear();
         }
 
         public void ReceiveInput(Vector2 mov, bool isAdjustement)

@@ -16,6 +16,8 @@ namespace Down2Jam.Manager
         public bool IsActive { private set; get; }
         public float Timer { private set; get; }
 
+        public bool DidTimerExpired { private set; get; }
+
         private void Awake()
         {
             Instance = this;
@@ -31,7 +33,8 @@ namespace Down2Jam.Manager
                 if (Timer > TimerMax)
                 {
                     Timer = TimerMax;
-                    SceneManager.LoadScene("Main");
+                    DidTimerExpired = true;
+                    IsActive = false;
                 }
                 _timerText.text = $"{TimerMax - Timer:00}";
             }
@@ -45,6 +48,7 @@ namespace Down2Jam.Manager
 
         public void StopTimer()
         {
+            DidTimerExpired = false;
             IsActive = false;
             _timerText.text = TimerMax.ToString();
         }

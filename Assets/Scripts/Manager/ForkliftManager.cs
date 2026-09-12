@@ -49,29 +49,30 @@ namespace Down2Jam.Manager
                 {
                     fl.TryActAI(TimerManager.Instance.Timer);
                 }
+            }
 
-                if (ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside))
+            if (TimerManager.Instance.DidTimerExpired ||
+                (TimerManager.Instance.IsActive && ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside)))
+            {
+                _currentForklift.Stop();
+                foreach (var fl in _oldForklifts) fl.Stop();
+
+                TimerManager.Instance.StopTimer();
+                InputManager.Instance.ResetMov();
+                _oldForklifts.Add(_currentForklift);
+                _lastRecordedMove = Vector2.zero;
+
+                _totalTime += TimerManager.Instance.Timer;
+
+                if (ObjectiveManager.Instance.IsLastOrder)
                 {
-                    _currentForklift.Stop();
-                    foreach (var fl in _oldForklifts) fl.Stop();
+                    VictoryManager.Instance.ShowVictory(_totalTime, _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
+                }
+                else
+                {
+                    ObjectiveManager.Instance.FulfillOrder();
 
-                    TimerManager.Instance.StopTimer();
-                    InputManager.Instance.ResetMov();
-                    _oldForklifts.Add(_currentForklift);
-                    _lastRecordedMove = Vector2.zero;
-
-                    _totalTime += TimerManager.Instance.Timer;
-
-                    if (ObjectiveManager.Instance.IsLastOrder)
-                    {
-                        VictoryManager.Instance.ShowVictory(_totalTime, LoaderManager.CurrentLevel.Orders.Length);
-                    }
-                    else
-                    {
-                        ObjectiveManager.Instance.FulfillOrder();
-
-                        SpawnForklifts();
-                    }
+                    SpawnForklifts();
                 }
             }
         }

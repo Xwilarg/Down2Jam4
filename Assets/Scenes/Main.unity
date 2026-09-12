@@ -432,7 +432,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -100, y: -200}
+  m_SizeDelta: {x: -50, y: -200}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &356670507
 MonoBehaviour:
@@ -2105,7 +2105,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0e6e851b1ee724cb944af62dfc8ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
-  _debugInfo: {fileID: 11400000, guid: 66322317fe022f54baa9d971a7400ce1, type: 2}
+  _debugInfo: {fileID: 11400000, guid: 74f03270160ed854e907698b9e46dc5e, type: 2}
 --- !u!114 &1553947021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2133,6 +2133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.VictoryManager
   _victoryPanel: {fileID: 1655652980}
   _finalText: {fileID: 356670507}
+  _nextLevelBtn: {fileID: 498213318}
 --- !u!1 &1560746880
 GameObject:
   m_ObjectHideFlags: 0

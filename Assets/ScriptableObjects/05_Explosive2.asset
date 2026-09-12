@@ -19,9 +19,9 @@ MonoBehaviour:
   - Input: 2
     Output: 0
     Cargo: 1
-  - Input: 1
-    Output: 4
-    Cargo: 0
+  - Input: 4
+    Output: 5
+    Cargo: 1
   - Input: 0
     Output: 3
     Cargo: 1
@@ -31,8 +31,8 @@ MonoBehaviour:
   - Input: 3
     Output: 1
     Cargo: 0
-  - Input: 4
-    Output: 5
-    Cargo: 0
+  - Input: 1
+    Output: 4
+    Cargo: 1
   Intro: {fileID: 6231892579173505729, guid: 07f70646ad1b44e4b887aea2d14414ff, type: 3}
   Next: {fileID: 0}
