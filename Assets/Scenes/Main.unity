@@ -1411,7 +1411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5}
   m_SizeDelta: {x: 0, y: 20}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &916526726
@@ -1434,7 +1434,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Director of minipis
+  m_text: Improvised Postal Worker
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 891c886b186683741a51ff4725904e0b, type: 2}
   m_sharedMaterial: {fileID: -6170683902389852324, guid: 891c886b186683741a51ff4725904e0b, type: 2}
