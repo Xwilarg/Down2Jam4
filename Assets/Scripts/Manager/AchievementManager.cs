@@ -59,6 +59,7 @@ namespace Assets.Scripts.Manager
     {
         WinGame,
         WinAllMoreThan800,
-        WinAfter2Explosions
+        WinAfter2Explosions,
+        SecretRap
     }
 }

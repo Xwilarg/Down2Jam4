@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69b11536ffa4d7f488482b14e6a68962, type: 3}
-  m_Name: Explode2Minipis
+  m_Name: MinipiRap
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.SO.AchievementInfo
-  Name: Cool minipis don't look at explosions
-  Description: You didn't look at them, but you did witness them
+  Name: I'm not a rapper
+  Description: Please let's never speak about it
   Icon: {fileID: 0}
