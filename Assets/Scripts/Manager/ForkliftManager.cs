@@ -2,6 +2,7 @@ using Down2Jam.Prop;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Down2Jam.Manager
 {
@@ -50,6 +51,14 @@ namespace Down2Jam.Manager
 
                 if (ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside))
                 {
+                    if (ObjectiveManager.Instance.IsLastOrder)
+                    {
+                        LoaderManager.CurrentLevel = ObjectiveManager.Instance.NextLevel;
+                        VNManager.SkipIntro = false;
+                        SceneManager.LoadScene("Main");
+                        return;
+                    }
+
                     _currentForklift.Stop();
                     foreach (var fl in _oldForklifts) fl.Stop();
 

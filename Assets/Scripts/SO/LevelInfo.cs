@@ -10,5 +10,6 @@ namespace NsfwDelivery.SO
         public SceneReference Level;
         public OrderInfo[] Orders;
         public InkFile Intro;
+        public LevelInfo Next;
     }
 }

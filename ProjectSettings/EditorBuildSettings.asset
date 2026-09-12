@@ -13,6 +13,6 @@ EditorBuildSettings:
     guid: 1c02364fe7835ab4789d6170157d5fdd
   - enabled: 1
     path: Assets/Scenes/Levels/02_FourMinipis.unity
-    guid: 7ff452a162eb45742985635d8d49cf82
+    guid: 641649a67b24dea409d9562922e33a29
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}

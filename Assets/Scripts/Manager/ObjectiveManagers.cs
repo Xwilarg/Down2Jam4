@@ -10,6 +10,7 @@ namespace Down2Jam.Manager
 
         [SerializeField]
         private LevelInfo _level;
+        public LevelInfo NextLevel => _level.Next;
 
         [SerializeField]
         private Transform[] _inputs, _outputs;
@@ -19,6 +20,8 @@ namespace Down2Jam.Manager
         public OrderInfo CurrentOrder => _level.Orders[_orderIndex];
         public Transform CurrentInput { private set; get; }
         public Output CurrentOutput { private set; get; }
+
+        public bool IsLastOrder => _orderIndex == _level.Orders.Length - 1;
 
         public Transform GetInput(OrderInfo order) => _inputs[order.Input];
 
