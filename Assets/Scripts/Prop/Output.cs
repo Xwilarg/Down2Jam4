@@ -12,9 +12,11 @@ namespace Down2Jam.Prop
         private int _insideCount = 0;
 
         public bool IsDeprecated { set; get; }
+        private Color _highlightColor;
 
         private void Awake()
         {
+            _highlightColor = _hint.color;
             _hint.gameObject.SetActive(false);
         }
 
@@ -27,8 +29,8 @@ namespace Down2Jam.Prop
         {
             if (collision.CompareTag("Forklift"))
             {
-                if (IsDeprecated) _hint.color = Color.green;
                 _insideCount++;
+                _hint.color = Color.green;
             }
         }
 
@@ -36,9 +38,15 @@ namespace Down2Jam.Prop
         {
             if (collision.CompareTag("Forklift"))
             {
-                if (IsDeprecated && !IsInside) _hint.color = Color.black;
                 _insideCount--;
+                if (!IsInside) _hint.color = IsDeprecated ? Color.black : _highlightColor;
             }
+        }
+
+        public void Clear()
+        {
+            _insideCount = 0;
+            _hint.color = Color.black;
         }
 
         public void Shrink()
