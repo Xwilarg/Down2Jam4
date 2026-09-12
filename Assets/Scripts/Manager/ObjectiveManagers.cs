@@ -25,12 +25,13 @@ namespace Down2Jam.Manager
         private void Awake()
         {
             Instance = this;
-            UpdateInternal();
         }
 
         private void Start()
         {
+            UpdateInternal();
             VNManager.Instance.PlayStory(_level.Intro);
+            ForkliftManager.Instance.SpawnForklifts();
         }
 
         public void FulfillOrder()

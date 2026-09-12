@@ -24,11 +24,6 @@ namespace Down2Jam.Manager
             Instance = this;
         }
 
-        private void Start()
-        {
-            SpawnForklifts();
-        }
-
         private void Update()
         {
             if (TimerManager.Instance.IsActive)
