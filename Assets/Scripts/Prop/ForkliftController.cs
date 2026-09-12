@@ -12,6 +12,9 @@ namespace Down2Jam.Prop
         [SerializeField]
         private Dictionary<CargoType, Sprite> _cargos;
 
+        [SerializeField]
+        private Sprite _forkliftCurrent, _forkliftAI;
+
         private const float LinearSpeed = 5f;
         private const float AngularSpeed = 200f;
         private const float ExplosionForce = 5f;
@@ -38,7 +41,6 @@ namespace Down2Jam.Prop
                 TargetOutput.Shrink();
 
                 _cargoSr.sprite = _cargos[value.Cargo];
-                _cargoSr.color = value.Cargo == CargoType.Explosive ? Color.red : Color.white;
             }
             get => _assignedOrder;
         }
@@ -46,6 +48,7 @@ namespace Down2Jam.Prop
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
+            _sr.sprite = _forkliftCurrent;
         }
 
         private void Update()
@@ -75,6 +78,7 @@ namespace Down2Jam.Prop
             _sr.color = Color.white;
             _skipAdjustements = false;
             TargetOutput.IsDeprecated = true;
+            _sr.sprite = _forkliftAI;
         }
 
         public void ReceiveInput(Vector2 mov, bool isAdjustement)
