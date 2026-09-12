@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e576039d20bc8245856b01eb50f2199, type: 3}
-  m_Name: 02_FourMinipis
+  m_Name: 03_FourMinipis2
   m_EditorClassIdentifier: Assembly-CSharp::NsfwDelivery.SO.LevelInfo
   Level:
-    asset: {fileID: 102900000, guid: 641649a67b24dea409d9562922e33a29, type: 3}
-    guid: 641649a67b24dea409d9562922e33a29
+    asset: {fileID: 102900000, guid: 68064278b73a3c1459a94137f311c729, type: 3}
+    guid: 68064278b73a3c1459a94137f311c729
   Orders:
   - Input: 0
     Output: 2
@@ -25,5 +25,5 @@ MonoBehaviour:
   - Input: 1
     Output: 1
     Cargo: 0
-  Intro: {fileID: 6231892579173505729, guid: 1825145bb2a52a448a43734f9eafa4b8, type: 3}
-  Next: {fileID: 11400000, guid: ba621119cfcf69145aa9020424af45ca, type: 2}
+  Intro: {fileID: 6231892579173505729, guid: 044006d981a5d8a4e8e7b9c2bcaf1509, type: 3}
+  Next: {fileID: 11400000, guid: 4b81c42af53612d4d8eca16ba6d1fd1f, type: 2}
