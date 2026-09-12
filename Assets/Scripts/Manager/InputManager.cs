@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 namespace Down2Jam.Manager
 {
@@ -45,6 +46,11 @@ namespace Down2Jam.Manager
             {
                 VNManager.Instance.DisplayNextDialogue();
             }
+        }
+
+        public void OnRetry(InputAction.CallbackContext value)
+        {
+            if (value.phase == InputActionPhase.Started) SceneManager.LoadScene("Main");
         }
     }
 }

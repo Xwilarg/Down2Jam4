@@ -894,6 +894,68 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &542823042
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 542823043}
+  - component: {fileID: 542823044}
+  m_Layer: 5
+  m_Name: AchievementContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &542823043
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542823042}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1276559842}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 1, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 0}
+  m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &542823044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 542823042}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59f8146938fff824cb5fd77236b75775, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.VerticalLayoutGroup
+  m_Padding:
+    m_Left: 0
+    m_Right: 0
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 7
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &611923068
 GameObject:
   m_ObjectHideFlags: 0
@@ -1911,6 +1973,7 @@ RectTransform:
   - {fileID: 299314591}
   - {fileID: 1898106671}
   - {fileID: 1655652981}
+  - {fileID: 542823043}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2004,6 +2067,7 @@ GameObject:
   - component: {fileID: 1553947019}
   - component: {fileID: 1553947020}
   - component: {fileID: 1553947022}
+  - component: {fileID: 1553947023}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2105,7 +2169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0e6e851b1ee724cb944af62dfc8ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
-  _debugInfo: {fileID: 11400000, guid: 66322317fe022f54baa9d971a7400ce1, type: 2}
+  _debugInfo: {fileID: 11400000, guid: 555352c2a26891a4597e9b7fdc163b6e, type: 2}
 --- !u!114 &1553947021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2134,6 +2198,26 @@ MonoBehaviour:
   _victoryPanel: {fileID: 1655652980}
   _finalText: {fileID: 356670507}
   _nextLevelBtn: {fileID: 498213318}
+--- !u!114 &1553947023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553947013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db1fd80de14078b43ae7d65ddcdb0115, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Assets.Scripts.Manager.AchievementManager
+  _firstLevel: {fileID: 11400000, guid: 555352c2a26891a4597e9b7fdc163b6e, type: 2}
+  _achievementContainer: {fileID: 542823043}
+  _achievementPopupPrefab: {fileID: 497453359539611354, guid: b092110b3a12db84591c047f24215c62, type: 3}
+  _achievements:
+  - key: 0
+    value: {fileID: 11400000, guid: 98acc360cedabc646b8855013c0f68dd, type: 2}
+  - key: 1
+    value: {fileID: 11400000, guid: 3fe85c7aaa9d68845a4e52a94dd65e16, type: 2}
 --- !u!1 &1560746880
 GameObject:
   m_ObjectHideFlags: 0
@@ -2291,6 +2375,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 9caa3d8a-6b2f-4e8e-8bad-6ede561bd9be
     m_ActionName: UI/TrackedDeviceOrientation
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1553947016}
+        m_TargetAssemblyTypeName: Down2Jam.Manager.InputManager, Assembly-CSharp
+        m_MethodName: OnRetry
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 2ae77edd-c78e-435b-9e33-c71c00243790
+    m_ActionName: 'Player/Retry[/Keyboard/r]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

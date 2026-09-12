@@ -1,4 +1,5 @@
-﻿using Down2Jam.Manager.Persistency;
+﻿using Assets.Scripts.Manager;
+using Down2Jam.Manager.Persistency;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -54,7 +55,15 @@ namespace Down2Jam.Manager
                 $"<b>Final Score: {finalScore} / 500</b>\n" +
                 $"Best Score: {PersistencyManager.Instance.SaveData.GetBestScore(levelName)}";
 
-            _nextLevelBtn.interactable = finalScore >= 500;
+            if (LoaderManager.CurrentLevel.Next == null)
+            {
+                _nextLevelBtn.gameObject.SetActive(false);
+                AchievementManager.Instance.ValidateVictory();
+            }
+            else
+            {
+                _nextLevelBtn.interactable = finalScore >= 500;
+            }
         }
 
         public void Retry()

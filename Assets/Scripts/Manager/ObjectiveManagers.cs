@@ -1,5 +1,5 @@
 ﻿using Down2Jam.Prop;
-using NsfwDelivery.SO;
+using Down2Jam.SO;
 using UnityEngine;
 
 namespace Down2Jam.Manager

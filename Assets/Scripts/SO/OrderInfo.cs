@@ -1,4 +1,4 @@
-﻿namespace NsfwDelivery.SO
+﻿namespace Down2Jam.SO
 {
     [System.Serializable]
     public class OrderInfo

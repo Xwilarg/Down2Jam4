@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
 
-namespace NsfwDelivery.SO
+namespace Down2Jam.SO
 {
     [CreateAssetMenu(menuName = "ScriptableObject/VNSpeakerInfo", fileName = "VNSpeakerInfo")]
     public class VNSpeakerInfo : ScriptableObject

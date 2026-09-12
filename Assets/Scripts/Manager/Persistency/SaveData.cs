@@ -5,6 +5,7 @@ namespace Down2Jam.Manager.Persistency
     public class SaveData
     {
         public Dictionary<string, LevelData> Levels { set; get; } = new();
+        public List<int> Achievements = new();
 
         public void SaveScore(string level, int score)
         {
@@ -30,6 +31,20 @@ namespace Down2Jam.Manager.Persistency
         {
             if (Levels.TryGetValue(level, out var data)) return data.BestScore;
             return 0;
+        }
+
+        public bool HasAchievement(int id)
+        {
+            return Achievements.Contains(id);
+        }
+
+        public void UnlockAchievement(int id)
+        {
+            if (!Achievements.Contains(id))
+            {
+                Achievements.Add(id);
+                PersistencyManager.Instance.Save();
+            }
         }
     }
 

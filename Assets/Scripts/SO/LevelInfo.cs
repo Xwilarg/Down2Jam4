@@ -2,7 +2,7 @@
 using Ink.UnityIntegration;
 using UnityEngine;
 
-namespace NsfwDelivery.SO
+namespace Down2Jam.SO
 {
     [CreateAssetMenu(menuName = "ScriptableObject/LevelInfo", fileName = "LevelInfo")]
     public class LevelInfo : ScriptableObject

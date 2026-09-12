@@ -1,5 +1,5 @@
 ﻿using Down2Jam.Manager;
-using NsfwDelivery.SO;
+using Down2Jam.SO;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
