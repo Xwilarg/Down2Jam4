@@ -2,6 +2,7 @@ You're wondering how we reached this point, minipi... #speaker estelia #emotion 
 Pi! #speaker minipi
 Me too, minipi, me too... #speaker estelia #emotion neutral
 Everything started a few days ago...
+
 It was a great day, the sun was shining, the workers working, the fish fishing... #speaker none #time past
 When suddenly!
 

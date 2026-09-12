@@ -82,6 +82,7 @@ namespace Down2Jam.Manager
                         }
                         else
                         {
+                            if (body != "none") Debug.LogWarning($"Unknown speaker {body}");
                             _nameContainer.SetActive(false);
                             _body.gameObject.SetActive(false);
                             _emotion.gameObject.SetActive(false);
