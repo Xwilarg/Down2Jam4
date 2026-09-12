@@ -15,9 +15,6 @@ namespace Down2Jam.Manager
         public static bool SkipIntro { set; get; } = false;
 
         [SerializeField]
-        private InkFile _intro;
-
-        [SerializeField]
         private GameObject _vnContainer;
 
         [SerializeField]
@@ -44,17 +41,18 @@ namespace Down2Jam.Manager
         private void Awake()
         {
             Instance = this;
+            _vnContainer.SetActive(false);
+            _nameContainer.SetActive(false);
+            _sticker.gameObject.SetActive(false);
+            _body.gameObject.SetActive(false);
+        }
 
-            if (SkipIntro)
+        public void PlayStory(InkFile inkFile)
+        {
+            if (!SkipIntro)
             {
-                _vnContainer.SetActive(false);
-            }
-            else
-            {
-                _story = new(_intro.storyJson);
-                _nameContainer.SetActive(false);
-                _sticker.gameObject.SetActive(false);
-                _body.gameObject.SetActive(false);
+                _vnContainer.SetActive(true);
+                _story = new(inkFile.storyJson);
                 DisplayNextDialogue();
                 SkipIntro = true;
             }

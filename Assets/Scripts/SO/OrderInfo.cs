@@ -1,9 +1,7 @@
-﻿using UnityEngine;
-
-namespace NsfwDelivery.SO
+﻿namespace NsfwDelivery.SO
 {
-    [CreateAssetMenu(menuName = "ScriptableObject/OrderInfo", fileName = "OrderInfo")]
-    public class OrderInfo : ScriptableObject
+    [System.Serializable]
+    public class OrderInfo
     {
         public int Input, Output;
     }

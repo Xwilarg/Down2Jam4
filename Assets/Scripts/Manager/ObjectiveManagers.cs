@@ -9,14 +9,14 @@ namespace Down2Jam.Manager
         public static ObjectiveManager Instance { private set; get; }
 
         [SerializeField]
-        private Transform[] _inputs, _outputs;
+        private LevelInfo _level;
 
         [SerializeField]
-        private OrderInfo[] _orders;
+        private Transform[] _inputs, _outputs;
 
         private int _orderIndex;
 
-        public OrderInfo CurrentOrder => _orders[_orderIndex];
+        public OrderInfo CurrentOrder => _level.Orders[_orderIndex];
         public Transform CurrentInput { private set; get; }
         public Output CurrentOutput { private set; get; }
 
@@ -26,6 +26,11 @@ namespace Down2Jam.Manager
         {
             Instance = this;
             UpdateInternal();
+        }
+
+        private void Start()
+        {
+            VNManager.Instance.PlayStory(_level.Intro);
         }
 
         public void FulfillOrder()

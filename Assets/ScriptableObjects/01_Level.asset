@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e576039d20bc8245856b01eb50f2199, type: 3}
+  m_Name: 01_Level
+  m_EditorClassIdentifier: Assembly-CSharp::NsfwDelivery.SO.LevelInfo
+  Level:
+    asset: {fileID: 102900000, guid: 1c02364fe7835ab4789d6170157d5fdd, type: 3}
+    guid: 1c02364fe7835ab4789d6170157d5fdd
+  Orders:
+  - Input: 0
+    Output: 0
+  Intro: {fileID: 6231892579173505729, guid: f08e0e3988f1d9c4a841302de71e98d5, type: 3}
