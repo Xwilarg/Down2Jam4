@@ -1298,6 +1298,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1553947014}
+  - component: {fileID: 1553947021}
   - component: {fileID: 1553947015}
   - component: {fileID: 1553947017}
   - component: {fileID: 1553947016}
@@ -1402,6 +1403,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
   _debugInfo: {fileID: 11400000, guid: 555352c2a26891a4597e9b7fdc163b6e, type: 2}
+--- !u!114 &1553947021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1553947013}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a9c2966e845c2445af95d252a8e1fd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
+  _resetStatic: 0
 --- !u!1 &1560746880
 GameObject:
   m_ObjectHideFlags: 0
