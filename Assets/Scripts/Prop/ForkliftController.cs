@@ -67,11 +67,31 @@ namespace Down2Jam.Prop
 
             _mov = inputTarget.Movement;
             _rb.angularVelocity = _mov.x * -AngularSpeed;
+
+            if (!_skipAdjustements)
+            {
+                var timeRef = inputTarget.Timer;
+                var next = _inputs.Where(x => !_skipAdjustements || !x.IsAdjustement).FirstOrDefault(x => timer < x.Timer);
+
+                if (next == null) return;
+
+                var nextTimeRef = next.Timer;
+                var delta = nextTimeRef - timeRef;
+
+                var me = timer - timeRef;
+                var me01 = me / delta;
+
+                transform.SetPositionAndRotation(
+                    Vector2.Lerp(inputTarget.Position, next.Position, me01),
+                    Quaternion.Euler(0f, 0f, Mathf.LerpAngle(inputTarget.Rotation, next.Rotation, me01)));
+            }
         }
 
         public void Stop()
         {
             _rb.linearVelocity = Vector2.zero;
+            _rb.angularVelocity = 0f;
+
             ReceiveInput(Vector2.zero, false);
             TargetOutput.Grow();
             TargetOutput.Grow();
@@ -124,6 +144,8 @@ namespace Down2Jam.Prop
 
             if (AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
             {
+                _skipAdjustements = true;
+
                 var contact = collision.contacts[0].point;
                 foreach (var fl in Physics2D.OverlapCircleAll(contact, ExplosionRange, LayerMask.GetMask("Forklift")))
                 {
