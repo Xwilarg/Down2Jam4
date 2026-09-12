@@ -17,7 +17,7 @@ namespace Down2Jam.Prop
 
         private const float LinearSpeed = 5f;
         private const float AngularSpeed = 200f;
-        private const float ExplosionForce = 5f;
+        private const float ExplosionForce = 10f;
         private const float ExplosionRange = 2f;
 
         private readonly List<InputInfo> _inputs = new();
@@ -153,7 +153,7 @@ namespace Down2Jam.Prop
                 foreach (var fl in Physics2D.OverlapCircleAll(contact, ExplosionRange, LayerMask.GetMask("Forklift")))
                 {
                     var controller = fl.GetComponent<ForkliftController>();
-                    controller.Explode(((Vector2)controller.transform.position).normalized - contact);
+                    controller.Explode(((Vector2)controller.transform.position - contact).normalized);
                 }
             }
         }
