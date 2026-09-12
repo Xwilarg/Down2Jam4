@@ -12,6 +12,8 @@ namespace Down2Jam.Manager
     {
         public static VNManager Instance { private set; get; }
 
+        public static bool SkipIntro { set; get; } = false;
+
         [SerializeField]
         private InkFile _intro;
 
@@ -43,11 +45,19 @@ namespace Down2Jam.Manager
         {
             Instance = this;
 
-            _story = new(_intro.storyJson);
-            _nameContainer.SetActive(false);
-            _sticker.gameObject.SetActive(false);
-            _body.gameObject.SetActive(false);
-            DisplayNextDialogue();
+            if (SkipIntro)
+            {
+                _vnContainer.SetActive(false);
+            }
+            else
+            {
+                _story = new(_intro.storyJson);
+                _nameContainer.SetActive(false);
+                _sticker.gameObject.SetActive(false);
+                _body.gameObject.SetActive(false);
+                DisplayNextDialogue();
+                SkipIntro = true;
+            }
         }
 
         private void UpdateDisplay()

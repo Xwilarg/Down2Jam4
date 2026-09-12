@@ -59,6 +59,7 @@ namespace Down2Jam.Prop
             TargetOutput.Grow();
             _sr.color = Color.white;
             _skipAdjustements = false;
+            TargetOutput.IsDeprecated = true;
         }
 
         public void ReceiveInput(Vector2 mov, bool isAdjustement)
