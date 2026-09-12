@@ -27,7 +27,7 @@ namespace Down2Jam.Prop
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Forklift"))
+            if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput.gameObject.GetEntityId() == gameObject.GetEntityId())
             {
                 _insideCount++;
                 _hint.color = Color.green;
@@ -36,7 +36,7 @@ namespace Down2Jam.Prop
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.CompareTag("Forklift"))
+            if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput.gameObject.GetEntityId() == gameObject.GetEntityId())
             {
                 _insideCount--;
                 if (!IsInside) _hint.color = IsDeprecated ? Color.black : _highlightColor;
