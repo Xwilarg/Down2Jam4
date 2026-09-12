@@ -27,6 +27,9 @@ namespace Down2Jam.Manager
         private TMP_Text _name, _nameSubtitle;
 
         [SerializeField]
+        private GameObject _stickerContainer;
+
+        [SerializeField]
         private Image _sticker, _body, _emotion;
 
         [SerializeField]
@@ -43,7 +46,7 @@ namespace Down2Jam.Manager
             Instance = this;
             _vnContainer.SetActive(false);
             _nameContainer.SetActive(false);
-            _sticker.gameObject.SetActive(false);
+            _stickerContainer.SetActive(false);
             _body.gameObject.SetActive(false);
         }
 
@@ -89,7 +92,7 @@ namespace Down2Jam.Manager
                         }
                         break;
 
-                    case "sticker": _sticker.gameObject.SetActive(body == "on"); break;
+                    case "sticker": _stickerContainer.SetActive(body == "on"); break;
 
                     case "time": break;
 
