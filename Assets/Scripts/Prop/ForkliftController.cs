@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 namespace Down2Jam.Prop
 {
@@ -28,6 +29,7 @@ namespace Down2Jam.Prop
         private Vector2 _mov;
         private bool _skipAdjustements;
 
+        public bool DidExplode { private set; get; }
         private bool _isExploded;
 
         private OrderInfo _assignedOrder;
@@ -102,6 +104,7 @@ namespace Down2Jam.Prop
             _skipAdjustements = false;
             TargetOutput.IsDeprecated = true;
             _sr.sprite = _forkliftAI;
+            DidExplode = false;
         }
 
         public void ReceiveInput(Vector2 mov, bool isAdjustement)
@@ -123,6 +126,7 @@ namespace Down2Jam.Prop
         private void Explode(Vector2 dir)
         {
             _isExploded = true;
+            DidExplode = true;
 
             _rb.angularDamping = .2f;
             _rb.linearDamping = .2f;

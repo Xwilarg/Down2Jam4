@@ -1,3 +1,4 @@
+using Assets.Scripts.Manager;
 using Down2Jam.Prop;
 using System.Collections;
 using System.Collections.Generic;
@@ -61,7 +62,8 @@ namespace Down2Jam.Manager
                 {
                     if (!VictoryManager.Instance.IsGameFinished)
                     {
-                        VictoryManager.Instance.ShowVictory(_oldForklifts.Select(x => x.TargetOutput.ValidationTimer).Where(x => x.HasValue).Sum(x => x.Value), _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
+                        var finalScore = VictoryManager.Instance.ShowVictory(_oldForklifts.Select(x => x.TargetOutput.ValidationTimer).Where(x => x.HasValue).Sum(x => x.Value), _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
+                        if (finalScore >= 500 && _oldForklifts.Count(x => x.DidExplode && x.TargetOutput.IsInside) >= 2) AchievementManager.Instance.Unlock(AchievementType.WinAfter2Explosions);
                     }
                     else
                     {

@@ -58,6 +58,7 @@ namespace Assets.Scripts.Manager
     public enum AchievementType
     {
         WinGame,
-        WinAllMoreThan800
+        WinAllMoreThan800,
+        WinAfter2Explosions
     }
 }

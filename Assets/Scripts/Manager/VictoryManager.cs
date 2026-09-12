@@ -29,7 +29,7 @@ namespace Down2Jam.Manager
             _victoryPanel.SetActive(false);
         }
 
-        public void ShowVictory(float totalTime, int minipiCount, int totalCount)
+        public int ShowVictory(float totalTime, int minipiCount, int totalCount)
         {
             if (IsGameFinished) return;
 
@@ -64,6 +64,8 @@ namespace Down2Jam.Manager
             {
                 _nextLevelBtn.interactable = finalScore >= 500;
             }
+
+            return finalScore;
         }
 
         public void Retry()

@@ -2169,7 +2169,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0e6e851b1ee724cb944af62dfc8ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
-  _debugInfo: {fileID: 11400000, guid: 555352c2a26891a4597e9b7fdc163b6e, type: 2}
+  _debugInfo: {fileID: 11400000, guid: 4b81c42af53612d4d8eca16ba6d1fd1f, type: 2}
 --- !u!114 &1553947021
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2218,6 +2218,8 @@ MonoBehaviour:
     value: {fileID: 11400000, guid: 98acc360cedabc646b8855013c0f68dd, type: 2}
   - key: 1
     value: {fileID: 11400000, guid: 3fe85c7aaa9d68845a4e52a94dd65e16, type: 2}
+  - key: 2
+    value: {fileID: 11400000, guid: a804a75651dea0b4396da70db1ec2332, type: 2}
 --- !u!1 &1560746880
 GameObject:
   m_ObjectHideFlags: 0
