@@ -31,7 +31,7 @@ namespace Down2Jam.Manager
 
         public int ShowVictory(float totalTime, int minipiCount, int totalCount)
         {
-            if (IsGameFinished) return;
+            if (IsGameFinished) return -1;
 
             IsGameFinished = true;
 
