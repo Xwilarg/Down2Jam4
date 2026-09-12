@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using Down2Jam.Manager;
+using UnityEngine;
 
 namespace Down2Jam.Prop
 {
@@ -13,6 +14,8 @@ namespace Down2Jam.Prop
 
         public bool IsDeprecated { set; get; }
         private Color _highlightColor;
+
+        public float? ValidationTimer { set; get; }
 
         private void Awake()
         {
@@ -29,6 +32,7 @@ namespace Down2Jam.Prop
         {
             if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput.gameObject.GetEntityId() == gameObject.GetEntityId())
             {
+                if (_insideCount == 0) ValidationTimer = TimerManager.Instance.Timer;
                 _insideCount++;
                 _hint.color = Color.green;
             }
@@ -39,7 +43,11 @@ namespace Down2Jam.Prop
             if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput.gameObject.GetEntityId() == gameObject.GetEntityId())
             {
                 _insideCount--;
-                if (!IsInside) _hint.color = IsDeprecated ? Color.black : _highlightColor;
+                if (!IsInside)
+                {
+                    _hint.color = IsDeprecated ? Color.black : _highlightColor;
+                    ValidationTimer = null;
+                }
             }
         }
 
@@ -57,6 +65,11 @@ namespace Down2Jam.Prop
         public void Grow()
         {
             GetComponent<CircleCollider2D>().radius *= 2f;
+        }
+
+        public override string ToString()
+        {
+            return $"Output (inside: {_insideCount})";
         }
     }
 }

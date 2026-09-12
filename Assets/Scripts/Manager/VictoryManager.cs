@@ -19,6 +19,8 @@ namespace Down2Jam.Manager
         [SerializeField]
         private Button _nextLevelBtn;
 
+        public bool IsGameFinished { set; get; }
+
         private void Awake()
         {
             Instance = this;
@@ -28,10 +30,14 @@ namespace Down2Jam.Manager
 
         public void ShowVictory(float totalTime, int minipiCount, int totalCount)
         {
+            if (IsGameFinished) return;
+
+            IsGameFinished = true;
+
             _victoryPanel.SetActive(true);
 
-            var minipiScore = Mathf.CeilToInt((minipiCount / (float)totalCount) * 500f);
-            var avrTime = totalTime / minipiCount;
+            var minipiScore = totalCount == 0 ? 0 : (Mathf.CeilToInt((minipiCount / (float)totalCount) * 500f));
+            var avrTime = minipiCount == 0 ? 10 : (totalTime / minipiCount);
             var timeScore = Mathf.CeilToInt(500 - (avrTime * 500f / 10f));
             var finalScore = timeScore + minipiScore;
 

@@ -1,4 +1,5 @@
 using Down2Jam.Prop;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -18,8 +19,6 @@ namespace Down2Jam.Manager
         private GameObject _forkliftPrefab;
 
         private float _refTimer;
-
-        private float _totalTime;
 
         private void Awake()
         {
@@ -55,24 +54,42 @@ namespace Down2Jam.Manager
                 (TimerManager.Instance.IsActive && ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside)))
             {
                 _currentForklift.Stop();
-                foreach (var fl in _oldForklifts) fl.Stop();
-
-                TimerManager.Instance.StopTimer();
-                InputManager.Instance.ResetMov();
                 _oldForklifts.Add(_currentForklift);
                 _lastRecordedMove = Vector2.zero;
 
-                _totalTime += TimerManager.Instance.Timer;
-
                 if (ObjectiveManager.Instance.IsLastOrder)
                 {
-                    VictoryManager.Instance.ShowVictory(_totalTime, _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
+                    if (!VictoryManager.Instance.IsGameFinished)
+                    {
+                        VictoryManager.Instance.ShowVictory(_oldForklifts.Select(x => x.TargetOutput.ValidationTimer).Where(x => x.HasValue).Sum(x => x.Value), _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
+                    }
+                    else
+                    {
+                        TimerManager.Instance.StartTimer();
+                    }
                 }
                 else
                 {
                     ObjectiveManager.Instance.FulfillOrder();
 
                     SpawnForklifts();
+                }
+
+                TimerManager.Instance.StopTimer();
+                InputManager.Instance.ResetMov();
+
+                foreach (var fl in _oldForklifts)
+                {
+                    fl.Stop();
+                    fl.TargetOutput.gameObject.SetActive(false); // Unity shitting itself with physics running asynchroniously or smth
+                }
+
+                MoveBackForklifts();
+
+                foreach (var fl in _oldForklifts)
+                {
+                    fl.TargetOutput.Clear();
+                    fl.TargetOutput.gameObject.SetActive(true);
                 }
             }
         }
@@ -83,7 +100,10 @@ namespace Down2Jam.Manager
             go.transform.position = ObjectiveManager.Instance.CurrentInput.position;
             _currentForklift = go.GetComponent<ForkliftController>();
             _currentForklift.AssignedOrder = ObjectiveManager.Instance.CurrentOrder;
+        }
 
+        public void MoveBackForklifts()
+        {
             foreach (var fl in _oldForklifts)
             {
                 fl.transform.position = ObjectiveManager.Instance.GetInput(fl.AssignedOrder).transform.position;
