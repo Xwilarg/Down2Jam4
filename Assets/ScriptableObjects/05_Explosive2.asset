@@ -35,4 +35,4 @@ MonoBehaviour:
     Output: 4
     Cargo: 1
   Intro: {fileID: 6231892579173505729, guid: 07f70646ad1b44e4b887aea2d14414ff, type: 3}
-  Next: {fileID: 0}
+  Next: {fileID: 11400000, guid: 49eec183a46e3854da14ac0e9b59ab2d, type: 2}

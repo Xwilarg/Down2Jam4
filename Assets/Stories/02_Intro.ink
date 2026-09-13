@@ -1,7 +1,7 @@
 Great job minipi! #speaker estelia #emotion happy
 Pipi! #speaker minipi
-Ah you're wondering about how we are going to scale the mean of production to expand our network on a bigger level, great question! #speaker estelia #emotion neutral
-That's easy, just drive as you did, once you're done, another minipi will do the same
+Qs yes indeed, carrying crates one by one are going to be a bit slow #speaker estelia #emotion neutral
+But I have the solution! Just drive as you did, once you're done, another minipi will do the same
 Just avoid colliding with each other and voilà!
 Pipipi pipi #speaker minipi
 I couldn't have said better! #speaker estelia #emotion happy

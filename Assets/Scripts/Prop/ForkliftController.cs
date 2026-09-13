@@ -22,7 +22,7 @@ namespace Down2Jam.Prop
         private const float ExplosionRange = 2f;
 
         private readonly List<InputInfo> _inputs = new();
-        private Rigidbody2D _rb;
+        protected Rigidbody2D _rb;
         [SerializeField]
         private SpriteRenderer _sr, _cargoSr;
 
@@ -47,13 +47,13 @@ namespace Down2Jam.Prop
             get => _assignedOrder;
         }
 
-        private void Awake()
+        protected virtual void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _sr.sprite = _forkliftCurrent;
         }
 
-        private void Update()
+        protected virtual void Update()
         {
             if (_isExploded) return;
 
