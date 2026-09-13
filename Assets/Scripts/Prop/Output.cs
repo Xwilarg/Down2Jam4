@@ -45,7 +45,7 @@ namespace Down2Jam.Prop
                 _insideCount--;
                 if (!IsInside)
                 {
-                    _hint.color = IsDeprecated ? Color.black : _highlightColor;
+                    _hint.color = IsDeprecated ? Color.white : _highlightColor;
                     ValidationTimer = null;
                 }
             }
@@ -54,7 +54,7 @@ namespace Down2Jam.Prop
         public void Clear()
         {
             _insideCount = 0;
-            _hint.color = Color.black;
+            _hint.color = Color.white;
             ValidationTimer = null;
         }
 
@@ -65,7 +65,7 @@ namespace Down2Jam.Prop
 
         public void Grow()
         {
-            GetComponent<CircleCollider2D>().radius *= 2f;
+            GetComponent<CircleCollider2D>().radius *= 1.5f;
         }
 
         public override string ToString()
