@@ -2,6 +2,7 @@
 using Down2Jam.Manager.Achievement;
 using Down2Jam.Manager.Persistency;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Down2Jam.Manager
 {
@@ -35,6 +36,11 @@ namespace Down2Jam.Manager
                     inst.GetComponent<AchievementPopup>().InitUI(ach.Value, PersistencyManager.Instance.SaveData.HasAchievement((int)ach.Key));
                 }
             }
+        }
+
+        public void GoToMainMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
         }
 
         public void ToggleSettings()
