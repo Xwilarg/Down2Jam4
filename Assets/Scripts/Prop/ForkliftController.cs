@@ -86,7 +86,7 @@ namespace Down2Jam.Prop
             _mov = inputTarget.Movement;
             _rb.angularVelocity = _mov.x * -AngularSpeed;
 
-            if (!_skipAdjustements && inputTarget.IsAdjustement)
+            if (!_skipAdjustements)
             {
                 var timeRef = inputTarget.Timer;
                 var next = _inputs.Where(x => !_skipAdjustements || !x.IsAdjustement).FirstOrDefault(x => timer < x.Timer);
