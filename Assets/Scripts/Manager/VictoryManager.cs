@@ -73,6 +73,11 @@ namespace Down2Jam.Manager
             SceneManager.LoadScene("Main");
         }
 
+        public void BackToMenu()
+        {
+            SceneManager.LoadScene("MainMenu");
+        }
+
         public void NextLevel()
         {
             LoaderManager.CurrentLevel = ObjectiveManager.Instance.NextLevel;
