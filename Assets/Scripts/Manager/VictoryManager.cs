@@ -55,10 +55,10 @@ namespace Down2Jam.Manager
                 $"<b>Final Score: {finalScore} / 500</b>\n" +
                 $"Best Score: {PersistencyManager.Instance.SaveData.GetBestScore(levelName)}";
 
+            AchievementManager.Instance.ValidateVictory();
             if (LoaderManager.CurrentLevel.Next == null)
             {
                 _nextLevelBtn.gameObject.SetActive(false);
-                AchievementManager.Instance.ValidateVictory();
             }
             else
             {

@@ -60,6 +60,7 @@ namespace Down2Jam.Prop
 
             if (_isExploded) return;
 
+            if (TargetOutput != null && TargetOutput.IsInside) ReceiveRawInput(Vector2.zero);
             _rb.linearVelocity = transform.up * _mov.y * LinearSpeed;
         }
 
@@ -115,7 +116,7 @@ namespace Down2Jam.Prop
                 if (!TargetOutput.IsDeprecated)
                 {
                     TargetOutput.Grow();
-                    TargetOutput.Grow();
+                    //TargetOutput.Grow();
                 }
                 TargetOutput.IsDeprecated = true;
             }
