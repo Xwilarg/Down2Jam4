@@ -1,6 +1,5 @@
 using Assets.Scripts.Manager;
 using Down2Jam.Prop;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -15,6 +14,7 @@ namespace Down2Jam.Manager
         private Vector2 _lastRecordedMove;
 
         private readonly List<ForkliftController> _oldForklifts = new();
+        private MinipoForklift[] _aiForklifts;
 
         [SerializeField]
         private GameObject _forkliftPrefab;
@@ -24,11 +24,13 @@ namespace Down2Jam.Manager
         private void Awake()
         {
             Instance = this;
+
+            _aiForklifts = GameObject.FindObjectsByType<MinipoForklift>();
         }
 
         private void Update()
         {
-            if (TimerManager.Instance.IsActive)
+            if (TimerManager.Instance.IsActive && _currentForklift != null)
             {
                 if (_lastRecordedMove != InputManager.Instance.Mov)
                 {
@@ -54,9 +56,12 @@ namespace Down2Jam.Manager
             if (TimerManager.Instance.DidTimerExpired ||
                 (TimerManager.Instance.IsActive && ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside)))
             {
-                _currentForklift.Stop();
-                _oldForklifts.Add(_currentForklift);
-                _lastRecordedMove = Vector2.zero;
+                if (_currentForklift != null)
+                {
+                    _currentForklift.Stop();
+                    _oldForklifts.Add(_currentForklift);
+                    _lastRecordedMove = Vector2.zero;
+                }
 
                 if (ObjectiveManager.Instance.IsLastOrder)
                 {
@@ -65,10 +70,8 @@ namespace Down2Jam.Manager
                         var finalScore = VictoryManager.Instance.ShowVictory(_oldForklifts.Select(x => x.TargetOutput.ValidationTimer).Where(x => x.HasValue).Sum(x => x.Value), _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
                         if (finalScore >= 500 && _oldForklifts.Count(x => x.DidExplode && x.TargetOutput.IsInside) >= 2) AchievementManager.Instance.Unlock(AchievementType.WinAfter2Explosions);
                     }
-                    else
-                    {
-                        TimerManager.Instance.StartTimer();
-                    }
+                    TimerManager.Instance.StartTimer();
+                    _currentForklift = null;
                 }
                 else
                 {
@@ -85,6 +88,7 @@ namespace Down2Jam.Manager
                     fl.Stop();
                     fl.TargetOutput.gameObject.SetActive(false); // Unity shitting itself with physics running asynchroniously or smth
                 }
+                foreach (var po in _aiForklifts) po.Stop();
 
                 MoveBackForklifts();
 

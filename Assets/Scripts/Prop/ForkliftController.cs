@@ -16,10 +16,10 @@ namespace Down2Jam.Prop
         [SerializeField]
         private Sprite _forkliftCurrent, _forkliftAI;
 
-        private const float LinearSpeed = 5f;
-        private const float AngularSpeed = 200f;
-        private const float ExplosionForce = 10f;
-        private const float ExplosionRange = 2f;
+        protected const float LinearSpeed = 5f;
+        protected const float AngularSpeed = 200f;
+        protected const float ExplosionForce = 10f;
+        protected const float ExplosionRange = 2f;
 
         private readonly List<InputInfo> _inputs = new();
         protected Rigidbody2D _rb;
@@ -40,7 +40,7 @@ namespace Down2Jam.Prop
             {
                 _assignedOrder = value;
                 TargetOutput = ObjectiveManager.Instance.CurrentOutput;
-                TargetOutput.Shrink();
+                TargetOutput?.Shrink();
 
                 _cargoSr.sprite = _cargos[value.Cargo];
             }
@@ -89,7 +89,7 @@ namespace Down2Jam.Prop
             }
         }
 
-        public void Stop()
+        public virtual void Stop()
         {
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
@@ -107,13 +107,13 @@ namespace Down2Jam.Prop
             DidExplode = false;
         }
 
-        public void ReceiveRawInput(Vector2 mov)
+        public virtual void ReceiveRawInput(Vector2 mov)
         {
             _mov = mov;
             _rb.angularVelocity = mov.x * -AngularSpeed;
         }
 
-        public void ReceiveInput(Vector2 mov, bool isAdjustement)
+        public virtual void ReceiveInput(Vector2 mov, bool isAdjustement)
         {
             _inputs.Add(new()
             {
