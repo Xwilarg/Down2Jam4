@@ -32,6 +32,8 @@ namespace Down2Jam.Prop
         public bool DidExplode { private set; get; }
         private bool _isExploded;
 
+        private float? _breakAdjustementTime;
+
         private OrderInfo _assignedOrder;
         public Output TargetOutput { private set; get; }
         public OrderInfo AssignedOrder
@@ -60,9 +62,22 @@ namespace Down2Jam.Prop
             _rb.linearVelocity = transform.up * _mov.y * LinearSpeed;
         }
 
+        public void BreakAdjustement()
+        {
+            if (TargetOutput != null && _skipAdjustements && !TargetOutput.IsDeprecated && _breakAdjustementTime == null)
+            {
+                _breakAdjustementTime = TimerManager.Instance.Timer;
+            }
+        }
+
         public void TryActAI(float timer)
         {
             if (_isExploded) return;
+
+            if (_breakAdjustementTime != null && timer > _breakAdjustementTime.Value)
+            {
+                _skipAdjustements = true;
+            }
 
             var inputTarget = _inputs.Where(x => !_skipAdjustements || !x.IsAdjustement).LastOrDefault(x => timer >= x.Timer);
             if (inputTarget == null) return;
@@ -70,7 +85,7 @@ namespace Down2Jam.Prop
             _mov = inputTarget.Movement;
             _rb.angularVelocity = _mov.x * -AngularSpeed;
 
-            if (!_skipAdjustements)
+            if (!_skipAdjustements && inputTarget.IsAdjustement)
             {
                 var timeRef = inputTarget.Timer;
                 var next = _inputs.Where(x => !_skipAdjustements || !x.IsAdjustement).FirstOrDefault(x => timer < x.Timer);
@@ -118,7 +133,7 @@ namespace Down2Jam.Prop
 
         public virtual void ReceiveInput(Vector2 mov, bool isAdjustement)
         {
-            if (!_skipAdjustements && isAdjustement)
+            if (_skipAdjustements && isAdjustement)
             {
                 return;
             }
@@ -139,6 +154,9 @@ namespace Down2Jam.Prop
 
         private void Explode(Vector2 dir)
         {
+            BreakAdjustement();
+            _skipAdjustements = true;
+
             _isExploded = true;
             DidExplode = true;
 
@@ -160,13 +178,12 @@ namespace Down2Jam.Prop
         {
             if (collision.collider.CompareTag("Forklift"))
             {
+                BreakAdjustement();
                 _skipAdjustements = true;
             }
 
             if (AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
             {
-                _skipAdjustements = true;
-
                 var contact = collision.contacts[0].point;
                 foreach (var fl in Physics2D.OverlapCircleAll(contact, ExplosionRange, LayerMask.GetMask("Forklift")))
                 {

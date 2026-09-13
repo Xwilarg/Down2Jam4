@@ -11,5 +11,7 @@ namespace Down2Jam.Prop
         public bool IsAdjustement;
         public Vector2 Position;
         public float Rotation;
+
+        public bool BrokeAdjustements;
     }
 }
