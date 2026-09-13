@@ -91,11 +91,6 @@ namespace Down2Jam.Manager
                 TimerManager.Instance.StopTimer();
                 InputManager.Instance.ResetMov();
 
-                if (requireTimerRestart)
-                {
-                    TimerManager.Instance.StartTimer();
-                }
-
                 foreach (var fl in _oldForklifts)
                 {
                     fl.Stop();
@@ -109,6 +104,11 @@ namespace Down2Jam.Manager
                 {
                     fl.TargetOutput.Clear();
                     fl.TargetOutput.gameObject.SetActive(true);
+                }
+
+                if (requireTimerRestart)
+                {
+                    TimerManager.Instance.StartTimer();
                 }
             }
         }
