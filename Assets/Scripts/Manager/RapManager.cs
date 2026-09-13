@@ -17,6 +17,7 @@ namespace Down2Jam.Manager
         {
             yield return SceneManager.LoadSceneAsync("GlobalUI", LoadSceneMode.Additive);
             AchievementManager.Instance.Unlock(AchievementType.SecretRap);
+            GlobalUIManager.Instance.StopBGM();
         }
 
         private IEnumerator WaitAndReloadMain()

@@ -1303,6 +1303,7 @@ MonoBehaviour:
   _settingsPanel: {fileID: 727474443}
   _achievementPanelContainer: {fileID: 1381813010}
   _achievementPrefab: {fileID: 497453359539611354, guid: b092110b3a12db84591c047f24215c62, type: 3}
+  _bgm: {fileID: 1533239032}
 --- !u!114 &1279602175
 MonoBehaviour:
   m_ObjectHideFlags: 0

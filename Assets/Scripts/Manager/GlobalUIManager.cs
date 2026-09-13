@@ -8,6 +8,8 @@ namespace Down2Jam.Manager
 {
     public class GlobalUIManager : MonoBehaviour
     {
+        public static GlobalUIManager Instance { private set; get; }
+
         [SerializeField]
         private GameObject _achievementPanel, _settingsPanel;
 
@@ -17,10 +19,20 @@ namespace Down2Jam.Manager
         [SerializeField]
         private GameObject _achievementPrefab;
 
+        [SerializeField]
+        private AudioSource _bgm;
+
         private void Awake()
         {
+            Instance = this;
+
             _achievementPanel.SetActive(false);
             _settingsPanel.SetActive(false);
+        }
+
+        public void StopBGM()
+        {
+            _bgm.Stop();
         }
 
         public void ToggleAchievement()
