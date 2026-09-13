@@ -13,6 +13,9 @@ namespace Down2Jam.Manager
         [SerializeField]
         private Transform[] _inputs, _outputs;
 
+        [SerializeField]
+        private Train _train;
+
         private int _orderIndex;
 
         public OrderInfo CurrentOrder => LoaderManager.CurrentLevel.Orders[_orderIndex];
@@ -34,6 +37,7 @@ namespace Down2Jam.Manager
             VNManager.Instance.PlayStory(LoaderManager.CurrentLevel.Intro);
             ForkliftManager.Instance.SpawnForklifts();
             ForkliftManager.Instance.LoadMinipos();
+            if (_train != null) ForkliftManager.Instance.LoadTrain(_train);
         }
 
         public void FulfillOrder()

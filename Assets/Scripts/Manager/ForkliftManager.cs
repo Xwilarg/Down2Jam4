@@ -20,6 +20,8 @@ namespace Down2Jam.Manager
         [SerializeField]
         private GameObject _forkliftPrefab;
 
+        private Train _train;
+
         private float _refTimer;
 
         private void Awake()
@@ -31,6 +33,11 @@ namespace Down2Jam.Manager
         public void LoadMinipos()
         {
             _aiForklifts = GameObject.FindObjectsByType<MinipoForklift>();
+        }
+
+        public void LoadTrain(Train train)
+        {
+            _train = train;
         }
 
         private void Update()
@@ -93,6 +100,7 @@ namespace Down2Jam.Manager
                 }
 
                 InputManager.Instance.ResetMov();
+                _train?.ResetPos();
 
                 foreach (var fl in _oldForklifts)
                 {

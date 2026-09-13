@@ -16,17 +16,14 @@ MonoBehaviour:
     asset: {fileID: 102900000, guid: 852bb8b9019b4874bba9980e83164924, type: 3}
     guid: 852bb8b9019b4874bba9980e83164924
   Orders:
-  - Input: 0
-    Output: 3
-    Cargo: 0
-  - Input: 3
-    Output: 0
-    Cargo: 0
   - Input: 1
     Output: 1
     Cargo: 0
-  - Input: 2
+  - Input: 0
     Output: 2
+    Cargo: 0
+  - Input: 2
+    Output: 0
     Cargo: 0
   Intro: {fileID: 6231892579173505729, guid: f950baa3745701542ada5b1107f94739, type: 3}
   Next: {fileID: 0}
