@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e576039d20bc8245856b01eb50f2199, type: 3}
-  m_Name: 07_Minipo2
+  m_Name: 08_Final
   m_EditorClassIdentifier: Assembly-CSharp::NsfwDelivery.SO.LevelInfo
   Level:
-    asset: {fileID: 102900000, guid: 774d7201a6a6db247bad97ab9b63b6e5, type: 3}
-    guid: 774d7201a6a6db247bad97ab9b63b6e5
+    asset: {fileID: 102900000, guid: 852bb8b9019b4874bba9980e83164924, type: 3}
+    guid: 852bb8b9019b4874bba9980e83164924
   Orders:
   - Input: 0
     Output: 3
@@ -28,5 +28,5 @@ MonoBehaviour:
   - Input: 2
     Output: 2
     Cargo: 0
-  Intro: {fileID: 6231892579173505729, guid: 3c77e53e445997b40a52181417c20ba3, type: 3}
-  Next: {fileID: 11400000, guid: 70bba056a8e8a18499bdccab34e9d2c1, type: 2}
+  Intro: {fileID: 6231892579173505729, guid: f950baa3745701542ada5b1107f94739, type: 3}
+  Next: {fileID: 0}
