@@ -24,26 +24,32 @@ namespace Down2Jam.Manager
         private void Awake()
         {
             Instance = this;
+        }
 
+        public void LoadMinipos()
+        {
             _aiForklifts = GameObject.FindObjectsByType<MinipoForklift>();
         }
 
         private void Update()
         {
-            if (TimerManager.Instance.IsActive && _currentForklift != null)
+            if (TimerManager.Instance.IsActive)
             {
-                if (_lastRecordedMove != InputManager.Instance.Mov)
+                if (_currentForklift != null)
                 {
-                    _lastRecordedMove = InputManager.Instance.Mov;
-                    _currentForklift.ReceiveInput(_lastRecordedMove, false);
-                }
-                else
-                {
-                    var newTimer = TimerManager.Instance.Timer;
-                    if (newTimer - _refTimer > .05f)
+                    if (_lastRecordedMove != InputManager.Instance.Mov)
                     {
-                        _currentForklift.ReceiveInput(_lastRecordedMove, true);
-                        _refTimer = newTimer;
+                        _lastRecordedMove = InputManager.Instance.Mov;
+                        _currentForklift.ReceiveInput(_lastRecordedMove, false);
+                    }
+                    else
+                    {
+                        var newTimer = TimerManager.Instance.Timer;
+                        if (newTimer - _refTimer > .05f)
+                        {
+                            _currentForklift.ReceiveInput(_lastRecordedMove, true);
+                            _refTimer = newTimer;
+                        }
                     }
                 }
 
@@ -52,6 +58,8 @@ namespace Down2Jam.Manager
                     fl.TryActAI(TimerManager.Instance.Timer);
                 }
             }
+
+            var requireTimerRestart = false;
 
             if (TimerManager.Instance.DidTimerExpired ||
                 (TimerManager.Instance.IsActive && ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside)))
@@ -70,7 +78,7 @@ namespace Down2Jam.Manager
                         var finalScore = VictoryManager.Instance.ShowVictory(_oldForklifts.Select(x => x.TargetOutput.ValidationTimer).Where(x => x.HasValue).Sum(x => x.Value), _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
                         if (finalScore >= 500 && _oldForklifts.Count(x => x.DidExplode && x.TargetOutput.IsInside) >= 2) AchievementManager.Instance.Unlock(AchievementType.WinAfter2Explosions);
                     }
-                    TimerManager.Instance.StartTimer();
+                    requireTimerRestart = true;
                     _currentForklift = null;
                 }
                 else
@@ -82,6 +90,11 @@ namespace Down2Jam.Manager
 
                 TimerManager.Instance.StopTimer();
                 InputManager.Instance.ResetMov();
+
+                if (requireTimerRestart)
+                {
+                    TimerManager.Instance.StartTimer();
+                }
 
                 foreach (var fl in _oldForklifts)
                 {

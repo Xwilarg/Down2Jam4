@@ -95,14 +95,17 @@ namespace Down2Jam.Prop
             _rb.angularVelocity = 0f;
 
             ReceiveInput(Vector2.zero, false);
-            if (!TargetOutput.IsDeprecated)
+            if (TargetOutput != null)
             {
-                TargetOutput.Grow();
-                TargetOutput.Grow();
+                if (!TargetOutput.IsDeprecated)
+                {
+                    TargetOutput.Grow();
+                    TargetOutput.Grow();
+                }
+                TargetOutput.IsDeprecated = true;
             }
             _sr.color = Color.white;
             _skipAdjustements = false;
-            TargetOutput.IsDeprecated = true;
             _sr.sprite = _forkliftAI;
             DidExplode = false;
         }

@@ -9,6 +9,7 @@ namespace Down2Jam.Prop
     {
         private CargoType _aiCargo;
         private Vector2 _basePos;
+        private Quaternion _baseRot;
 
         protected override void Awake()
         {
@@ -71,6 +72,7 @@ namespace Down2Jam.Prop
             base.Stop();
 
             transform.position = _basePos;
+            transform.rotation = _baseRot;
         }
 
         private void OnDrawGizmos()

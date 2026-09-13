@@ -33,6 +33,7 @@ namespace Down2Jam.Manager
             UpdateInternal();
             VNManager.Instance.PlayStory(LoaderManager.CurrentLevel.Intro);
             ForkliftManager.Instance.SpawnForklifts();
+            ForkliftManager.Instance.LoadMinipos();
         }
 
         public void FulfillOrder()
