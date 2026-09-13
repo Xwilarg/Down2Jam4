@@ -10,5 +10,5 @@ Someone is stealing the minipi! We should update them with explosives so they ca
 And here we are, warehouse 3, reduced into dust #sticker off #speaker estelia #emotion neutral
 Pipipi... #speaker minipi
 It's okay, no minipi were hurt in the making of this operation #speaker estelia #emotion neutral
-We however can't afford to loose another warehouse so be careful when driving okay?
+We however can't afford to lose another warehouse so be careful when driving okay?
 -> END
