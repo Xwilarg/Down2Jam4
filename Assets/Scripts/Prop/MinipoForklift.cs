@@ -1,6 +1,7 @@
 ﻿using Down2Jam.Manager;
 using Down2Jam.SO;
 using System;
+using System.Collections;
 using UnityEngine;
 
 namespace Down2Jam.Prop
@@ -10,6 +11,8 @@ namespace Down2Jam.Prop
         private CargoType _aiCargo;
         private Vector2 _basePos;
         private Quaternion _baseRot;
+
+        private bool _goingBack;
 
         protected override void Awake()
         {
@@ -35,18 +38,21 @@ namespace Down2Jam.Prop
             float bestAngle = 0f;
             bool wasFound = false;
 
-            for (var angle = -Mathf.PI / 4; angle <= Mathf.PI / 4; angle += MathF.PI / 20f)
+            if (!_goingBack)
             {
-                var finalAngle = angle + Mathf.Atan2(transform.up.y, transform.up.x);
-                var dir = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
-                var hit = Physics2D.CircleCast((Vector2)transform.position + dir * 1.5f, .3f, new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)), float.MaxValue, LayerMask.GetMask("Map", "Forklift"));
-
-                if (hit.collider.CompareTag("Forklift") && !hit.collider.TryGetComponent<MinipoForklift>(out var _))
+                for (var angle = -Mathf.PI / 4; angle <= Mathf.PI / 4; angle += MathF.PI / 20f)
                 {
-                    maxDist = hit.distance;
-                    bestAngle = angle;
-                    wasFound = true;
-                    break;
+                    var finalAngle = angle + Mathf.Atan2(transform.up.y, transform.up.x);
+                    var dir = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
+                    var hit = Physics2D.CircleCast((Vector2)transform.position + dir * 1.5f, .5f, new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)), float.MaxValue, LayerMask.GetMask("Map", "Forklift"));
+
+                    if (hit.collider.CompareTag("Forklift") && !hit.collider.TryGetComponent<MinipoForklift>(out var _))
+                    {
+                        maxDist = hit.distance;
+                        bestAngle = angle;
+                        wasFound = true;
+                        break;
+                    }
                 }
             }
 
@@ -65,19 +71,32 @@ namespace Down2Jam.Prop
                 }
             }
 
+            if (!_goingBack && maxDist < .2f)
+            {
+                StartCoroutine(RecoverForward());
+            }
+
+            var revert = _goingBack || maxDist < .2f;
+
             if (bestAngle == 0f)
             {
                 _rb.angularVelocity = 0f;
             }
             else if (bestAngle < 0f)
             {
-                _rb.angularVelocity = -AngularSpeed;
+                _rb.angularVelocity = -AngularSpeed * (revert ? -1f : 1f);
             }
             else if (bestAngle > 0f)
             {
-                _rb.angularVelocity = AngularSpeed;
+                _rb.angularVelocity = AngularSpeed * (revert ? -1f : 1f);
             }
-            _rb.linearVelocity = transform.up * LinearSpeed;
+            _rb.linearVelocity = transform.up * LinearSpeed * (revert ? -1f : 1f);
+        }
+
+        private IEnumerator RecoverForward()
+        {
+            yield return new WaitForSeconds(2f);
+            _goingBack = false;
         }
 
         public override void ReceiveRawInput(Vector2 mov)

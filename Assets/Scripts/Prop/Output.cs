@@ -30,7 +30,7 @@ namespace Down2Jam.Prop
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
-            if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput.gameObject.GetEntityId() == gameObject.GetEntityId())
+            if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput?.gameObject?.GetEntityId() == gameObject.GetEntityId())
             {
                 if (_insideCount == 0) ValidationTimer = TimerManager.Instance.Timer;
                 _insideCount++;
@@ -40,7 +40,7 @@ namespace Down2Jam.Prop
 
         private void OnTriggerExit2D(Collider2D collision)
         {
-            if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput.gameObject.GetEntityId() == gameObject.GetEntityId())
+            if (collision.CompareTag("Forklift") && collision.GetComponent<ForkliftController>().TargetOutput?.gameObject?.GetEntityId() == gameObject.GetEntityId())
             {
                 _insideCount--;
                 if (!IsInside)
