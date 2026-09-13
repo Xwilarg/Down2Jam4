@@ -21,6 +21,8 @@ namespace Down2Jam.Manager
         [SerializeField]
         private LevelInfo _firstLevel;
 
+        private bool _isLoading = false;
+
         private void Awake()
         {
             Instance = this;
@@ -43,12 +45,13 @@ namespace Down2Jam.Manager
         {
             VNManager.SkipIntro = false;
             LoaderManager.CurrentLevel = level;
+            _isLoading = true;
             SceneManager.LoadScene("Main");
         }
 
         public void OnMove(InputAction.CallbackContext value)
         {
-            _player.ReceiveRawInput(value.ReadValue<Vector2>());
+            if (!_isLoading) _player.ReceiveRawInput(value.ReadValue<Vector2>());
         }
     }
 }
