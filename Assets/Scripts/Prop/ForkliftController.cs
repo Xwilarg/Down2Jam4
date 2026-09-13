@@ -15,6 +15,9 @@ namespace Down2Jam.Prop
         [SerializeField]
         private Sprite _forkliftCurrent, _forkliftAI;
 
+        [SerializeField]
+        private bool _isMainMenu;
+
         protected const float LinearSpeed = 5f;
         protected const float AngularSpeed = 200f;
         protected const float ExplosionForce = 10f;
@@ -56,7 +59,7 @@ namespace Down2Jam.Prop
 
         protected virtual void Update()
         {
-            if (!TimerManager.Instance.IsActive) return;
+            if (!_isMainMenu && !TimerManager.Instance.IsActive) return;
 
             if (_isExploded) return;
 

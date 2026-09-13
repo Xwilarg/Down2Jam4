@@ -25,6 +25,8 @@ namespace Down2Jam.Manager
         {
             Instance = this;
 
+            SceneManager.LoadScene("GlobalUI", LoadSceneMode.Additive);
+
             int totalScore = 0;
             LevelInfo it = _firstLevel;
             do

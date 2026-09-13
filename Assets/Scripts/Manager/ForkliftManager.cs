@@ -3,6 +3,7 @@ using Down2Jam.Prop;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Down2Jam.Manager
 {
@@ -24,6 +25,7 @@ namespace Down2Jam.Manager
         private void Awake()
         {
             Instance = this;
+            SceneManager.LoadScene("GlobalUI", LoadSceneMode.Additive);
         }
 
         public void LoadMinipos()
