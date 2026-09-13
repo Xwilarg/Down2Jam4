@@ -8,6 +8,7 @@ namespace Down2Jam.Prop
 {
     public class MinipoForklift : ForkliftController
     {
+        [SerializeField]
         private CargoType _aiCargo;
         private Vector2 _basePos;
         private Quaternion _baseRot;
@@ -19,6 +20,7 @@ namespace Down2Jam.Prop
             base.Awake();
 
             _basePos = transform.position;
+            _baseRot = transform.rotation;
 
             AssignedOrder = new()
             {
@@ -32,7 +34,7 @@ namespace Down2Jam.Prop
         {
             base.Update();
 
-            if (!TimerManager.Instance.IsActive) return;
+            if (!TimerManager.Instance.IsActive || _isExploded) return;
 
             float maxDist = -1f;
             float bestAngle = 0f;

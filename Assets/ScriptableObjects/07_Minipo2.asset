@@ -10,20 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7e576039d20bc8245856b01eb50f2199, type: 3}
-  m_Name: 06_Minipo
+  m_Name: 07_Minipo2
   m_EditorClassIdentifier: Assembly-CSharp::NsfwDelivery.SO.LevelInfo
   Level:
-    asset: {fileID: 102900000, guid: 9c602dfd4ece0214eb8db8355a3b0568, type: 3}
-    guid: 9c602dfd4ece0214eb8db8355a3b0568
+    asset: {fileID: 102900000, guid: 774d7201a6a6db247bad97ab9b63b6e5, type: 3}
+    guid: 774d7201a6a6db247bad97ab9b63b6e5
   Orders:
   - Input: 0
-    Output: 2
+    Output: 3
     Cargo: 0
-  - Input: 1
+  - Input: 3
     Output: 0
     Cargo: 0
-  - Input: 2
+  - Input: 1
     Output: 1
     Cargo: 0
-  Intro: {fileID: 6231892579173505729, guid: c688bbaa10a4b95479b877981963819b, type: 3}
-  Next: {fileID: 11400000, guid: 7498858a8b52def47825ca8cde623689, type: 2}
+  - Input: 2
+    Output: 2
+    Cargo: 0
+  Intro: {fileID: 6231892579173505729, guid: 3c77e53e445997b40a52181417c20ba3, type: 3}
+  Next: {fileID: 0}

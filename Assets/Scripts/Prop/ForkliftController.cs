@@ -30,7 +30,7 @@ namespace Down2Jam.Prop
         private bool _skipAdjustements;
 
         public bool DidExplode { private set; get; }
-        private bool _isExploded;
+        protected bool _isExploded;
 
         private float? _breakAdjustementTime;
 

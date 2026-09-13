@@ -65,7 +65,7 @@ namespace Down2Jam.Prop
 
         public void Grow()
         {
-            GetComponent<CircleCollider2D>().radius *= 1.5f;
+            GetComponent<CircleCollider2D>().radius *= 2f;
         }
 
         public override string ToString()
