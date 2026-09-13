@@ -1,4 +1,5 @@
-﻿using Down2Jam.Manager;
+﻿using Assets.Scripts.Manager;
+using Down2Jam.Manager;
 using Down2Jam.SO;
 using System.Collections;
 using System.Collections.Generic;
@@ -34,6 +35,7 @@ namespace Down2Jam.Prop
 
         public bool DidExplode { private set; get; }
         protected bool _isExploded;
+        private bool _isExplodedByTrain;
 
         private float? _breakAdjustementTime;
 
@@ -177,6 +179,15 @@ namespace Down2Jam.Prop
         {
             yield return new WaitForSeconds(3f);
             _isExploded = false;
+            _isExplodedByTrain = false;
+        }
+
+        private void OnTriggerEnter2D(Collider2D collision)
+        {
+            if (collision.CompareTag("Ach_depot") && _isExplodedByTrain)
+            {
+                AchievementManager.Instance.Unlock(AchievementType.TrainSoLong);
+            }
         }
 
         private void OnCollisionEnter2D(Collision2D collision)
@@ -189,10 +200,11 @@ namespace Down2Jam.Prop
 
             if (collision.collider.CompareTag("Train"))
             {
+                _isExplodedByTrain = true;
                 Explode(((Vector2)transform.position - collision.contacts[0].point).normalized);
             }
 
-            if (AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
+            if (AssignedOrder != null && AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
             {
                 var contact = collision.contacts[0].point;
                 foreach (var fl in Physics2D.OverlapCircleAll(contact, ExplosionRange, LayerMask.GetMask("Forklift")))

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c63b7034cb00d26489afa6a0c7e46e54
+guid: 017466287eccf154597564a03893bda3
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4414606137673671535
-    second: ACH_Licensed_0
+      213: 2847718448216160014
+    second: Thumbnail_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,13 +115,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ACH_Licensed_0
+      name: Thumbnail_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 500
-        height: 500
+        width: 1800
+        height: 1000
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19c93bc7b1b2cb2c0800000000000000
-      internalID: -4414606137673671535
+      spriteID: e07304e37d0258720800000000000000
+      internalID: 2847718448216160014
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ACH_Licensed_0: -4414606137673671535
+      Thumbnail_0: 2847718448216160014
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

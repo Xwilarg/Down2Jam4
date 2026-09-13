@@ -39,27 +39,31 @@ namespace Assets.Scripts.Manager
 
         public void ValidateVictory()
         {
-            var allMore800 = true;
+            int count800 = 0;
+            int victoryCount = 0;
             LevelInfo it = _firstLevel;
             do
             {
                 var sc = PersistencyManager.Instance.SaveData.GetBestScore(it.name);
-                if (sc < 500) return;
-                if (sc < 800) allMore800 = false;
+                if (sc >= 500) victoryCount++;
+                if (sc >= 800) count800++;
 
                 it = it.Next;
             } while (it != null);
 
-            Unlock(AchievementType.WinGame);
-            if (allMore800) Unlock(AchievementType.WinAllMoreThan800);
+            if (victoryCount >= 8) Unlock(AchievementType.WinGame);
+            if (count800 >= 4) Unlock(AchievementType.FourWinMoreThan800);
+            if (count800 >= 8) Unlock(AchievementType.EightWinMoreThan800);
         }
     }
 
     public enum AchievementType
     {
         WinGame,
-        WinAllMoreThan800,
+        EightWinMoreThan800,
         WinAfter2Explosions,
-        SecretRap
+        SecretRap,
+        TrainSoLong,
+        FourWinMoreThan800
     }
 }

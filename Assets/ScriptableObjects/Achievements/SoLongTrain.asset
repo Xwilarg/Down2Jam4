@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69b11536ffa4d7f488482b14e6a68962, type: 3}
-  m_Name: WinGame
+  m_Name: SoLongTrain
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.SO.AchievementInfo
-  Name: Forklift Accredited
-  UnlockExpl: Finish all levels with at least 500 points
-  Icon: {fileID: -4414606137673671535, guid: 490525ff236cacd468e4a22d5d152f63, type: 3}
+  Name: So long, and thanks for the minipi
+  UnlockExpl: Get thrown outside the map by the train on level 8
+  Icon: {fileID: 5206410816136802064, guid: 776065219c8fd0444a388880e67b7542, type: 3}

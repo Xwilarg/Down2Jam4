@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: c63b7034cb00d26489afa6a0c7e46e54
+guid: 776065219c8fd0444a388880e67b7542
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -4414606137673671535
-    second: ACH_Licensed_0
+      213: 5206410816136802064
+    second: ACH_Train_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -115,7 +115,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ACH_Licensed_0
+      name: ACH_Train_0
       rect:
         serializedVersion: 2
         x: 0
@@ -130,8 +130,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 19c93bc7b1b2cb2c0800000000000000
-      internalID: -4414606137673671535
+      spriteID: 01fe5927d03e04840800000000000000
+      internalID: 5206410816136802064
       vertices: []
       indices: 
       edges: []
@@ -150,7 +150,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ACH_Licensed_0: -4414606137673671535
+      ACH_Train_0: 5206410816136802064
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
