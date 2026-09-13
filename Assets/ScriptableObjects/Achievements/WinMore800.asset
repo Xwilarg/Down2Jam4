@@ -12,7 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69b11536ffa4d7f488482b14e6a68962, type: 3}
   m_Name: WinMore800
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.SO.AchievementInfo
-  Id: 1
   Name: Forklift Certified
   Description: Won all levels with and with more than 800 points? Way to go!
-  Icon: {fileID: 0}
+  Icon: {fileID: 4741924718757201647, guid: 191345ee70d86a943a269c6c11bcb634, type: 3}

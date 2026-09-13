@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Explode2Minipis
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.SO.AchievementInfo
   Name: Cool minipis don't look at explosions
-  Description: You didn't look at them, but you did witness them
-  Icon: {fileID: 0}
+  Description: Finish a level after exploding a bunch of minipis
+  Icon: {fileID: 8728512792583172563, guid: 4d8cd24792b0191468892c207a607642, type: 3}
