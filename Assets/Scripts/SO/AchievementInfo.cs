@@ -1,5 +1,4 @@
-﻿using Assets.Scripts.Manager;
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Down2Jam.SO
 {
@@ -7,7 +6,7 @@ namespace Down2Jam.SO
     public class AchievementInfo : ScriptableObject
     {
         public string Name;
-        public string Description;
+        public string UnlockExpl;
         public Sprite Icon;
     }
 }

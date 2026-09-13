@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: MinipiRap
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.SO.AchievementInfo
   Name: I'm not a rapper
-  Description: Please let's never speak about it
+  UnlockExpl: Reach the secret room in level 1, and please never mention it again
   Icon: {fileID: 3292393804281629167, guid: 78ded39a9d4afdc4daad2eaee127c14c, type: 3}

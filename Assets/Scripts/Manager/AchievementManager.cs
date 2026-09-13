@@ -2,7 +2,6 @@
 using Down2Jam.Manager.Persistency;
 using Down2Jam.SO;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager
@@ -22,6 +21,7 @@ namespace Assets.Scripts.Manager
 
         [SerializeField]
         private Dictionary<AchievementType, AchievementInfo> _achievements;
+        public Dictionary<AchievementType, AchievementInfo> Achievements => _achievements;
 
         private void Awake()
         {
@@ -33,7 +33,7 @@ namespace Assets.Scripts.Manager
             if (!PersistencyManager.Instance.SaveData.HasAchievement((int)ach))
             {
                 PersistencyManager.Instance.SaveData.UnlockAchievement((int)ach);
-                Instantiate(_achievementPopupPrefab, _achievementContainer).GetComponent<AchievementPopup>().Init(_achievements[ach]);
+                Instantiate(_achievementPopupPrefab, _achievementContainer).GetComponent<AchievementPopup>().InitEarned(_achievements[ach]);
             }
         }
 
