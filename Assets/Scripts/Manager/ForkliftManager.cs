@@ -64,6 +64,8 @@ namespace Down2Jam.Manager
             if (TimerManager.Instance.DidTimerExpired ||
                 (TimerManager.Instance.IsActive && ObjectiveManager.Instance.CurrentOutput.IsInside && _oldForklifts.All(x => x.TargetOutput.IsInside)))
             {
+                TimerManager.Instance.StopTimer();
+
                 if (_currentForklift != null)
                 {
                     _currentForklift.Stop();
@@ -88,7 +90,6 @@ namespace Down2Jam.Manager
                     SpawnForklifts();
                 }
 
-                TimerManager.Instance.StopTimer();
                 InputManager.Instance.ResetMov();
 
                 foreach (var fl in _oldForklifts)

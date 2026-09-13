@@ -4,7 +4,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.InputSystem.XR;
 
 namespace Down2Jam.Prop
 {
@@ -57,6 +56,8 @@ namespace Down2Jam.Prop
 
         protected virtual void Update()
         {
+            if (!TimerManager.Instance.IsActive) return;
+
             if (_isExploded) return;
 
             _rb.linearVelocity = transform.up * _mov.y * LinearSpeed;
@@ -72,7 +73,7 @@ namespace Down2Jam.Prop
 
         public void TryActAI(float timer)
         {
-            if (_isExploded) return;
+            if (_isExploded || (TargetOutput != null && TargetOutput.IsInside)) return;
 
             if (_breakAdjustementTime != null && timer > _breakAdjustementTime.Value)
             {
@@ -109,7 +110,6 @@ namespace Down2Jam.Prop
             _rb.linearVelocity = Vector2.zero;
             _rb.angularVelocity = 0f;
 
-            ReceiveInput(Vector2.zero, false);
             if (TargetOutput != null)
             {
                 if (!TargetOutput.IsDeprecated)
