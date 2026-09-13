@@ -118,6 +118,11 @@ namespace Down2Jam.Prop
 
         public virtual void ReceiveInput(Vector2 mov, bool isAdjustement)
         {
+            if (!_skipAdjustements && isAdjustement)
+            {
+                return;
+            }
+
             _inputs.Add(new()
             {
                 Movement = mov,

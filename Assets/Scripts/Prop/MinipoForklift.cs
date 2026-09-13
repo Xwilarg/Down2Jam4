@@ -71,12 +71,17 @@ namespace Down2Jam.Prop
                 }
             }
 
-            if (!_goingBack && maxDist < .2f)
+            bool revert = false;
+            if (!_goingBack && maxDist < .75f && !wasFound)
             {
+                _goingBack = true;
+                revert = true;
                 StartCoroutine(RecoverForward());
             }
-
-            var revert = _goingBack || maxDist < .2f;
+            else if (_goingBack)
+            {
+                revert = true;
+            }
 
             if (bestAngle == 0f)
             {
@@ -95,7 +100,7 @@ namespace Down2Jam.Prop
 
         private IEnumerator RecoverForward()
         {
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
             _goingBack = false;
         }
 
