@@ -16,6 +16,6 @@ For now it's easy, take this forklift and drive it to the blue area, you are for
 Pi #speaker minipi
 Is that a yes? #speaker estelia #emotion neutral
 Pi #speaker minipi
-Well, you'll see, it's not that hard, go inside and use the arrow keys to move around #speaker estelia #emotion neutral
+Well, you'll see, it's not that hard, go inside and use WASD or the arrow keys to move around #speaker estelia #emotion neutral
 Be careful to not hit obstacles, the 4th wall is barely holding
 -> END
