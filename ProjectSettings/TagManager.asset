@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 3
   tags:
   - Forklift
+  - Train
   layers:
   - Default
   - TransparentFX

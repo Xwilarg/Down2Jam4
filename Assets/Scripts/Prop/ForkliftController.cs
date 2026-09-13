@@ -4,6 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Unity.U2D.Physics.PhysicsShape;
 
 namespace Down2Jam.Prop
 {
@@ -184,6 +185,11 @@ namespace Down2Jam.Prop
             {
                 BreakAdjustement();
                 _skipAdjustements = true;
+            }
+
+            if (collision.collider.CompareTag("Train"))
+            {
+                Explode(((Vector2)transform.position - collision.contacts[0].point).normalized);
             }
 
             if (AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
