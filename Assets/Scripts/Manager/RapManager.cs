@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Assets.Scripts.Manager;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,7 +9,14 @@ namespace Down2Jam.Manager
     {
         private void Awake()
         {
+            StartCoroutine(LoadGlobalUI());
             StartCoroutine(WaitAndReloadMain());
+        }
+
+        private IEnumerator LoadGlobalUI()
+        {
+            yield return SceneManager.LoadSceneAsync("GlobalUI", LoadSceneMode.Additive);
+            AchievementManager.Instance.Unlock(AchievementType.SecretRap);
         }
 
         private IEnumerator WaitAndReloadMain()
