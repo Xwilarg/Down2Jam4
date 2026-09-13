@@ -33,16 +33,35 @@ namespace Down2Jam.Prop
 
             float maxDist = -1f;
             float bestAngle = 0f;
+            bool wasFound = false;
 
             for (var angle = -Mathf.PI / 4; angle <= Mathf.PI / 4; angle += MathF.PI / 20f)
             {
                 var finalAngle = angle + Mathf.Atan2(transform.up.y, transform.up.x);
-                var hit = Physics2D.CircleCast(transform.position, .3f, new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)), float.MaxValue, LayerMask.GetMask("Map"));
+                var dir = new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle));
+                var hit = Physics2D.CircleCast((Vector2)transform.position + dir * 1.5f, .3f, new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)), float.MaxValue, LayerMask.GetMask("Map", "Forklift"));
 
-                if (hit.distance > maxDist)
+                if (hit.collider.CompareTag("Forklift") && !hit.collider.TryGetComponent<MinipoForklift>(out var _))
                 {
                     maxDist = hit.distance;
                     bestAngle = angle;
+                    wasFound = true;
+                    break;
+                }
+            }
+
+            if (!wasFound)
+            {
+                for (var angle = -Mathf.PI / 4; angle <= Mathf.PI / 4; angle += MathF.PI / 20f)
+                {
+                    var finalAngle = angle + Mathf.Atan2(transform.up.y, transform.up.x);
+                    var hit = Physics2D.CircleCast(transform.position, .3f, new Vector2(Mathf.Cos(finalAngle), Mathf.Sin(finalAngle)), float.MaxValue, LayerMask.GetMask("Map"));
+
+                    if (hit.distance > maxDist)
+                    {
+                        maxDist = hit.distance;
+                        bestAngle = angle;
+                    }
                 }
             }
 
