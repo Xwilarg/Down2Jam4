@@ -2,6 +2,7 @@
 using Down2Jam.Manager.Persistency;
 using Down2Jam.SO;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Manager
@@ -34,6 +35,11 @@ namespace Assets.Scripts.Manager
             {
                 PersistencyManager.Instance.SaveData.UnlockAchievement((int)ach);
                 Instantiate(_achievementPopupPrefab, _achievementContainer).GetComponent<AchievementPopup>().InitEarned(_achievements[ach]);
+
+                if (ach != AchievementType.UnlockAll && _achievements.Where(x => x.Key != AchievementType.UnlockAll).All(x => PersistencyManager.Instance.SaveData.HasAchievement((int)x.Key)))
+                {
+                    Unlock(AchievementType.UnlockAll);
+                }
             }
         }
 
@@ -64,6 +70,8 @@ namespace Assets.Scripts.Manager
         WinAfter2Explosions,
         SecretRap,
         TrainSoLong,
-        FourWinMoreThan800
+        FourWinMoreThan800,
+        DodgeMinipo,
+        UnlockAll
     }
 }

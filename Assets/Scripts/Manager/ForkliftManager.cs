@@ -24,6 +24,8 @@ namespace Down2Jam.Manager
 
         private float _refTimer;
 
+        public bool GotMinipoTouch { set; get; }
+
         private void Awake()
         {
             Instance = this;
@@ -88,6 +90,11 @@ namespace Down2Jam.Manager
                     {
                         var finalScore = VictoryManager.Instance.ShowVictory(_oldForklifts.Select(x => x.TargetOutput.ValidationTimer).Where(x => x.HasValue).Sum(x => x.Value), _oldForklifts.Count(x => x.TargetOutput.IsInside), _oldForklifts.Count);
                         if (finalScore >= 500 && _oldForklifts.Count(x => x.DidExplode && x.TargetOutput.IsInside) >= 2) AchievementManager.Instance.Unlock(AchievementType.WinAfter2Explosions);
+
+                        if (_aiForklifts.Length > 0 && _oldForklifts.All(x => x.TargetOutput.IsInside))
+                        {
+                            if (!GotMinipoTouch) AchievementManager.Instance.Unlock(AchievementType.DodgeMinipo);
+                        }
                     }
                     requireTimerRestart = true;
                     _currentForklift = null;
@@ -121,6 +128,7 @@ namespace Down2Jam.Manager
                 {
                     TimerManager.Instance.StartTimer();
                 }
+                GotMinipoTouch = false;
             }
         }
 

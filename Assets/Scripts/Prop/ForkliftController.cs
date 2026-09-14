@@ -40,6 +40,8 @@ namespace Down2Jam.Prop
         protected bool _isExploded;
         private bool _isExplodedByTrain;
 
+        private float _explosionTimer;
+
         private float? _breakAdjustementTime;
 
         private OrderInfo _assignedOrder;
@@ -65,6 +67,16 @@ namespace Down2Jam.Prop
 
         protected virtual void Update()
         {
+            if (_explosionTimer > 0f)
+            {
+                _explosionTimer -= Time.deltaTime;
+                if (_explosionTimer <= 0f)
+                {
+                    _isExploded = false;
+                    _isExplodedByTrain = false;
+                }
+            }
+
             if (!_isMainMenu && !TimerManager.Instance.IsActive) return;
 
             if (_isExploded) return;
@@ -133,6 +145,8 @@ namespace Down2Jam.Prop
             _skipAdjustements = false;
             _sr.sprite = _forkliftAI;
             DidExplode = false;
+            _isExploded = false;
+            _explosionTimer = 0f;
         }
 
         public virtual void ReceiveRawInput(Vector2 mov)
@@ -175,14 +189,7 @@ namespace Down2Jam.Prop
 
             _rb.linearVelocity = dir * ExplosionForce;
 
-            StartCoroutine(RecoverExplosion());
-        }
-
-        private IEnumerator RecoverExplosion()
-        {
-            yield return new WaitForSeconds(3f);
-            _isExploded = false;
-            _isExplodedByTrain = false;
+            _explosionTimer = 3f;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
@@ -193,7 +200,7 @@ namespace Down2Jam.Prop
             }
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        protected virtual void OnCollisionEnter2D(Collision2D collision)
         {
             SoundManager.Instance.PlayHit();
 

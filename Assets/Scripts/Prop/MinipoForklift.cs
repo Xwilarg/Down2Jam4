@@ -120,6 +120,16 @@ namespace Down2Jam.Prop
             transform.rotation = _baseRot;
         }
 
+        protected override void OnCollisionEnter2D(Collision2D collision)
+        {
+            base.OnCollisionEnter2D(collision);
+
+            if (collision.collider.CompareTag("Forklift"))
+            {
+                ForkliftManager.Instance.GotMinipoTouch = true;
+            }
+        }
+
         private void OnDrawGizmos()
         {
             for (var angle = - Mathf.PI / 4; angle <= Mathf.PI / 4; angle += MathF.PI / 20f)

@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 69b11536ffa4d7f488482b14e6a68962, type: 3}
-  m_Name: MinipiRap
+  m_Name: UnlockAll
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.SO.AchievementInfo
-  Name: Supa Hot Minipi
-  UnlockExpl: Reach the secret room in level 1, and please never mention it again
-  Icon: {fileID: 3292393804281629167, guid: 78ded39a9d4afdc4daad2eaee127c14c, type: 3}
+  Name: Forklift Accredited
+  UnlockExpl: Unlock all achievements
+  Icon: {fileID: 3510675923672093151, guid: 403fabb7184f6284d9b8ceb6419cd422, type: 3}
