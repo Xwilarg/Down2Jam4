@@ -7,6 +7,8 @@ namespace Down2Jam.Manager.Persistency
         public Dictionary<string, LevelData> Levels { set; get; } = new();
         public List<int> Achievements = new();
 
+        public float Volume { set; get; } = .25f;
+
         public void SaveScore(string level, int score)
         {
             if (Levels.TryGetValue(level, out var data))

@@ -3,6 +3,7 @@ using Down2Jam.Manager.Achievement;
 using Down2Jam.Manager.Persistency;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 namespace Down2Jam.Manager
 {
@@ -22,17 +23,30 @@ namespace Down2Jam.Manager
         [SerializeField]
         private AudioSource _bgm;
 
+        [SerializeField]
+        private Slider _volumeSlider;
+
         private void Awake()
         {
             Instance = this;
 
             _achievementPanel.SetActive(false);
             _settingsPanel.SetActive(false);
+
+            _volumeSlider.value = PersistencyManager.Instance.SaveData.Volume;
         }
 
-        public void StopBGM()
+        public void SetBGM(AudioSource source)
         {
             _bgm.Stop();
+            _bgm = source;
+            _bgm.volume = PersistencyManager.Instance.SaveData.Volume;
+        }
+
+        public void OnVolumeChange(float volume)
+        {
+            PersistencyManager.Instance.SaveData.Volume = volume;
+            _bgm.volume = volume;
         }
 
         public void ToggleAchievement()
@@ -58,6 +72,10 @@ namespace Down2Jam.Manager
         public void ToggleSettings()
         {
             _settingsPanel.SetActive(!_settingsPanel.activeInHierarchy);
+            if (!_settingsPanel.activeInHierarchy)
+            {
+                PersistencyManager.Instance.Save();
+            }
         }
     }
 }

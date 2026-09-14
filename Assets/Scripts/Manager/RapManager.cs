@@ -7,6 +7,9 @@ namespace Down2Jam.Manager
 {
     public class RapManager : MonoBehaviour
     {
+        [SerializeField]
+        private AudioSource _rapSource;
+
         private void Awake()
         {
             StartCoroutine(LoadGlobalUI());
@@ -17,7 +20,7 @@ namespace Down2Jam.Manager
         {
             yield return SceneManager.LoadSceneAsync("GlobalUI", LoadSceneMode.Additive);
             AchievementManager.Instance.Unlock(AchievementType.SecretRap);
-            GlobalUIManager.Instance.StopBGM();
+            GlobalUIManager.Instance.SetBGM(_rapSource);
         }
 
         private IEnumerator WaitAndReloadMain()
