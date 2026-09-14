@@ -195,6 +195,8 @@ namespace Down2Jam.Prop
 
         private void OnCollisionEnter2D(Collision2D collision)
         {
+            SoundManager.Instance.PlayHit();
+
             if (collision.collider.CompareTag("Forklift"))
             {
                 BreakAdjustement();
@@ -207,12 +209,14 @@ namespace Down2Jam.Prop
                 var contact = collision.contacts[0].point;
                 Instantiate(_explosionPrefab, contact, Quaternion.identity);
                 Explode(((Vector2)transform.position - contact).normalized);
+                SoundManager.Instance.PlayExplosion();
             }
 
             if (AssignedOrder != null && AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
             {
                 var contact = collision.contacts[0].point;
                 Instantiate(_explosionPrefab, contact, Quaternion.identity);
+                SoundManager.Instance.PlayExplosion();
                 foreach (var fl in Physics2D.OverlapCircleAll(contact, ExplosionRange, LayerMask.GetMask("Forklift")))
                 {
                     var controller = fl.GetComponent<ForkliftController>();

@@ -35,6 +35,7 @@ namespace Down2Jam.Prop
                 if (_insideCount == 0) ValidationTimer = TimerManager.Instance.Timer;
                 _insideCount++;
                 _hint.color = Color.green;
+                SoundManager.Instance.PlayValidate();
             }
         }
 

@@ -22,10 +22,10 @@ namespace Down2Jam.Manager
         private GameObject _achievementPrefab;
 
         [SerializeField]
-        private AudioSource _bgm;
+        private AudioSource _bgm, _sfx;
 
         [SerializeField]
-        private Slider _volumeSlider;
+        private Slider _volumeSlider, _sfxVolumeSlider;
 
         [SerializeField]
         private TMP_Text _deleteSaveText;
@@ -40,6 +40,9 @@ namespace Down2Jam.Manager
             _settingsPanel.SetActive(false);
 
             _volumeSlider.value = PersistencyManager.Instance.SaveData.Volume;
+            _sfxVolumeSlider.value = PersistencyManager.Instance.SaveData.VolumeSFX;
+            _bgm.volume = _volumeSlider.value;
+            _sfx.volume = _sfxVolumeSlider.value;
         }
 
         public void SetBGM(AudioSource source)
@@ -67,6 +70,12 @@ namespace Down2Jam.Manager
         {
             PersistencyManager.Instance.SaveData.Volume = volume;
             _bgm.volume = volume;
+        }
+
+        public void OnSFXVolumeChange(float volume)
+        {
+            PersistencyManager.Instance.SaveData.VolumeSFX = volume;
+            _sfx.volume = volume;
         }
 
         public void ToggleAchievement()

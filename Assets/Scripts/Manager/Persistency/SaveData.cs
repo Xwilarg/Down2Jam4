@@ -8,6 +8,7 @@ namespace Down2Jam.Manager.Persistency
         public List<int> Achievements = new();
 
         public float Volume { set; get; } = .25f;
+        public float VolumeSFX { set; get; } = .8f;
 
         public void SaveScore(string level, int score)
         {
