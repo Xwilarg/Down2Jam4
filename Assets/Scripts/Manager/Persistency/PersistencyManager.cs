@@ -45,6 +45,12 @@ namespace Down2Jam.Manager.Persistency
             }
         }
 
+        public void ClearSaves()
+        {
+            _saveData = new();
+            Save();
+        }
+
         private static string SaveFilePath => Path.Combine(Application.persistentDataPath, "save.bin");
 
         public void Save()

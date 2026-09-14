@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Manager;
 using Down2Jam.Manager.Achievement;
 using Down2Jam.Manager.Persistency;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -26,6 +27,11 @@ namespace Down2Jam.Manager
         [SerializeField]
         private Slider _volumeSlider;
 
+        [SerializeField]
+        private TMP_Text _deleteSaveText;
+
+        private bool _deleteSavesConfirm = false;
+
         private void Awake()
         {
             Instance = this;
@@ -41,6 +47,20 @@ namespace Down2Jam.Manager
             _bgm.Stop();
             _bgm = source;
             _bgm.volume = PersistencyManager.Instance.SaveData.Volume;
+        }
+
+        public void DeleteSaves()
+        {
+            if (!_deleteSavesConfirm)
+            {
+                _deleteSavesConfirm = true;
+                _deleteSaveText.text = "Are you sure?";
+            }
+            else
+            {
+                PersistencyManager.Instance.ClearSaves();
+                SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+            }
         }
 
         public void OnVolumeChange(float volume)
@@ -74,6 +94,7 @@ namespace Down2Jam.Manager
             _settingsPanel.SetActive(!_settingsPanel.activeInHierarchy);
             if (!_settingsPanel.activeInHierarchy)
             {
+                _deleteSavesConfirm = false;
                 PersistencyManager.Instance.Save();
             }
         }
