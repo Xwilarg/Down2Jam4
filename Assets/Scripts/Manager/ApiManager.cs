@@ -19,6 +19,8 @@ namespace Down2Jam.Manager
         [SerializeField]
         private Button _validateLoginButton;
 
+        private string _deviceCode;
+
         private void Awake()
         {
             Instance = this;
@@ -53,9 +55,9 @@ namespace Down2Jam.Manager
         {
             Debug.Log($"Sending achievement ID {id} to API");
 
-            using UnityWebRequest request = new("https://d2jam.com/api/v1/device/token", "POST");
+            using UnityWebRequest request = new("https://d2jam.com/api/v1/achievement", "POST");
             byte[] bodyRaw = Encoding.UTF8.GetBytes(
-                "{\"achievementId\": " + id + ", }, \"deviceCode\": \"" + PersistencyManager.Instance.SaveData.DeviceCode + "\"}"
+                "{\"achievementId\": " + id + "}"
             );
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -63,7 +65,12 @@ namespace Down2Jam.Manager
             request.SetRequestHeader("Authorization", $"Bearer {PersistencyManager.Instance.SaveData.Token}");
             yield return request.SendWebRequest();
 
-            Debug.Log(request.downloadHandler.text);
+            var res = JsonConvert.DeserializeObject<ApiResponse<AchievementData>>(request.downloadHandler.text);
+
+            if (!res.success)
+            {
+                Debug.Log("Failed to send achievement");
+            }
         }
 
         private IEnumerator GetTokenCoroutine()
@@ -84,8 +91,7 @@ namespace Down2Jam.Manager
                 Application.OpenURL(res.data.verificationUri);
                 var userCode = res.data.userCode;
 
-                PersistencyManager.Instance.SaveData.DeviceCode = res.data.deviceCode;
-                PersistencyManager.Instance.Save();
+                _deviceCode = res.data.deviceCode;
 
                 _connectionText.text = $"Code: {userCode}";
                 _validateLoginButton.interactable = true;
@@ -97,7 +103,7 @@ namespace Down2Jam.Manager
         {
             using UnityWebRequest request = new("https://d2jam.com/api/v1/device/token", "POST");
             byte[] bodyRaw = Encoding.UTF8.GetBytes(
-                "{\"deviceCode\": \"" + PersistencyManager.Instance.SaveData.DeviceCode + "\"}"
+                "{\"deviceCode\": \"" + _deviceCode + "\"}"
             );
             request.uploadHandler = new UploadHandlerRaw(bodyRaw);
             request.downloadHandler = new DownloadHandlerBuffer();
@@ -142,4 +148,7 @@ namespace Down2Jam.Manager
         public string status { set; get; }
         public string token { set; get; }
     }
+
+    public class AchievementData
+    { }
 }
