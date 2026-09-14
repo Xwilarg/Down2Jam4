@@ -77,12 +77,7 @@ namespace Down2Jam.Manager
         {
             PersistencyManager.Instance.SaveData.VolumeSFX = volume;
             _sfx.volume = volume;
-            try
-            {
-                ForkliftManager.Instance?.Train?.SetVolume(volume);
-            }
-            catch (MissingReferenceException)
-            { /* Oops */ }
+            ForkliftManager.Instance?.Train?.SetVolume(volume);
         }
 
         public void ToggleAchievement()

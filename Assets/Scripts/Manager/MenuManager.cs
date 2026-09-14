@@ -27,6 +27,8 @@ namespace Down2Jam.Manager
         {
             Instance = this;
 
+            ForkliftManager.Instance = null;
+
             SceneManager.LoadScene("GlobalUI", LoadSceneMode.Additive);
 
             int totalScore = 0;

@@ -9,7 +9,7 @@ namespace Down2Jam.Manager
 {
     public class ForkliftManager : MonoBehaviour
     {
-        public static ForkliftManager Instance { private set; get; }
+        public static ForkliftManager Instance { set; get; }
 
         private ForkliftController _currentForklift;
         private Vector2 _lastRecordedMove;
