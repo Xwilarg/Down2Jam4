@@ -20,7 +20,7 @@ namespace Down2Jam.Manager
         [SerializeField]
         private GameObject _forkliftPrefab;
 
-        private Train _train;
+        public Train Train { private set; get; }
 
         private float _refTimer;
 
@@ -37,7 +37,7 @@ namespace Down2Jam.Manager
 
         public void LoadTrain(Train train)
         {
-            _train = train;
+            Train = train;
         }
 
         private void Update()
@@ -100,7 +100,7 @@ namespace Down2Jam.Manager
                 }
 
                 InputManager.Instance.ResetMov();
-                _train?.ResetPos();
+                Train?.ResetPos();
 
                 foreach (var fl in _oldForklifts)
                 {

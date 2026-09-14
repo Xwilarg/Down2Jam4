@@ -1,6 +1,7 @@
 ﻿using Assets.Scripts.Manager;
 using Down2Jam.Manager.Achievement;
 using Down2Jam.Manager.Persistency;
+using Down2Jam.Prop;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -76,6 +77,7 @@ namespace Down2Jam.Manager
         {
             PersistencyManager.Instance.SaveData.VolumeSFX = volume;
             _sfx.volume = volume;
+            ForkliftManager.Instance.Train?.SetVolume(volume);
         }
 
         public void ToggleAchievement()
