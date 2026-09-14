@@ -1,6 +1,7 @@
 ﻿using Down2Jam.SO;
 using Ink.Runtime;
 using Ink.UnityIntegration;
+using System;
 using System.Linq;
 using TMPro;
 using UnityEngine;
@@ -41,6 +42,8 @@ namespace Down2Jam.Manager
 
         public bool IsPlayingStory => _vnContainer.activeInHierarchy;
 
+        private Action _onDone;
+
         private void Awake()
         {
             Instance = this;
@@ -50,12 +53,13 @@ namespace Down2Jam.Manager
             _body.gameObject.SetActive(false);
         }
 
-        public void PlayStory(InkFile inkFile)
+        public void PlayStory(InkFile inkFile, Action onDone = null)
         {
             if (!SkipIntro)
             {
                 _vnContainer.SetActive(true);
                 _story = new(inkFile.storyJson);
+                _onDone = onDone;
                 DisplayNextDialogue();
                 SkipIntro = true;
             }
@@ -123,6 +127,8 @@ namespace Down2Jam.Manager
             else
             {
                 _vnContainer.SetActive(false);
+
+                _onDone?.Invoke();
             }
         }
     }

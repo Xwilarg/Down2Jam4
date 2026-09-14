@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Manager;
 using Down2Jam.Manager.Persistency;
+using Ink.UnityIntegration;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -18,7 +19,10 @@ namespace Down2Jam.Manager
         private TMP_Text _finalText;
 
         [SerializeField]
-        private Button _nextLevelBtn;
+        private Button _nextLevelBtn, _playOutroBtn;
+
+        [SerializeField]
+        private InkFile _outroFile;
 
         public bool IsGameFinished { set; get; }
 
@@ -26,6 +30,13 @@ namespace Down2Jam.Manager
         {
             Instance = this;
 
+            _victoryPanel.SetActive(false);
+        }
+
+        public void PlayOutro()
+        {
+            VNManager.SkipIntro = false;
+            VNManager.Instance.PlayStory(_outroFile, BackToMenu);
             _victoryPanel.SetActive(false);
         }
 
@@ -59,6 +70,7 @@ namespace Down2Jam.Manager
             if (LoaderManager.CurrentLevel.Next == null)
             {
                 _nextLevelBtn.gameObject.SetActive(false);
+                _playOutroBtn.gameObject.SetActive(true);
             }
             else
             {
