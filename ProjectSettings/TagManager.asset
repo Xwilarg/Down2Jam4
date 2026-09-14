@@ -50,6 +50,9 @@ TagManager:
   - name: Forklift
     uniqueID: 2113072931
     locked: 0
+  - name: VFX
+    uniqueID: 3902160761
+    locked: 0
   m_RenderingLayers:
   - Default
   m_MigratedRenderPipelines: []

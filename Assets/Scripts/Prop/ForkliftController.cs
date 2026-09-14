@@ -20,6 +20,9 @@ namespace Down2Jam.Prop
         [SerializeField]
         private bool _isMainMenu;
 
+        [SerializeField]
+        private GameObject _explosionPrefab;
+
         protected const float LinearSpeed = 5f;
         protected const float AngularSpeed = 200f;
         protected const float ExplosionForce = 10f;
@@ -207,6 +210,7 @@ namespace Down2Jam.Prop
             if (AssignedOrder != null && AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
             {
                 var contact = collision.contacts[0].point;
+                Instantiate(_explosionPrefab, contact, Quaternion.identity);
                 foreach (var fl in Physics2D.OverlapCircleAll(contact, ExplosionRange, LayerMask.GetMask("Forklift")))
                 {
                     var controller = fl.GetComponent<ForkliftController>();

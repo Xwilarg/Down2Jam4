@@ -94,8 +94,11 @@ MonoBehaviour:
     value: {fileID: 519550141, guid: ba8f813d96a9c144c955b4b21a3eabbc, type: 3}
   _forkliftCurrent: {fileID: -1735646239, guid: ba8f813d96a9c144c955b4b21a3eabbc, type: 3}
   _forkliftAI: {fileID: -1735646239, guid: ba8f813d96a9c144c955b4b21a3eabbc, type: 3}
+  _isMainMenu: 0
+  _explosionPrefab: {fileID: 7599023630412994373, guid: 400e35c1800842f4ab6113606acec6be, type: 3}
   _sr: {fileID: 8254086871864670415}
   _cargoSr: {fileID: 245608271825453164}
+  _aiCargo: 0
 --- !u!212 &8254086871864670415 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 1987975542042476889, guid: 1ab49b046df7df34d8c00f5be31cc241, type: 3}
