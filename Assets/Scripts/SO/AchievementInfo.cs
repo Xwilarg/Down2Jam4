@@ -8,5 +8,6 @@ namespace Down2Jam.SO
         public string Name;
         public string UnlockExpl;
         public Sprite Icon;
+        public int Down2JamId;
     }
 }

@@ -1,4 +1,5 @@
-﻿using Down2Jam.Manager.Achievement;
+﻿using Down2Jam.Manager;
+using Down2Jam.Manager.Achievement;
 using Down2Jam.Manager.Persistency;
 using Down2Jam.SO;
 using System.Collections.Generic;
@@ -35,6 +36,7 @@ namespace Assets.Scripts.Manager
             {
                 PersistencyManager.Instance.SaveData.UnlockAchievement((int)ach);
                 Instantiate(_achievementPopupPrefab, _achievementContainer).GetComponent<AchievementPopup>().InitEarned(_achievements[ach]);
+                ApiManager.Instance.UnlockAchievement(_achievements[ach].Down2JamId);
 
                 if (ach != AchievementType.UnlockAll && _achievements.Where(x => x.Key != AchievementType.UnlockAll).All(x => PersistencyManager.Instance.SaveData.HasAchievement((int)x.Key)))
                 {

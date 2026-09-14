@@ -9,6 +9,8 @@ namespace Down2Jam.Manager.Persistency
 
         public float Volume { set; get; } = .25f;
         public float VolumeSFX { set; get; } = .8f;
+        public string Token { set; get; }
+        public string DeviceCode { set; get; }
 
         public void SaveScore(string level, int score)
         {
