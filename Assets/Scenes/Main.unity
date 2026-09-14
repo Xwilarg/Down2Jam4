@@ -1143,7 +1143,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 0000000023eff27dfff0d6fci
+  m_ApplyToSortingLayers: 0000000023eff27dfff0d6fc793f96e8i
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -2591,7 +2591,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee0e6e851b1ee724cb944af62dfc8ae8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Down2Jam.Manager.DebugManager
-  _debugInfo: {fileID: 11400000, guid: 4b81c42af53612d4d8eca16ba6d1fd1f, type: 2}
+  _debugInfo: {fileID: 11400000, guid: 70bba056a8e8a18499bdccab34e9d2c1, type: 2}
 --- !u!114 &1553947021
 MonoBehaviour:
   m_ObjectHideFlags: 0

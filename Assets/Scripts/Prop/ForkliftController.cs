@@ -204,7 +204,9 @@ namespace Down2Jam.Prop
             if (collision.collider.CompareTag("Train"))
             {
                 _isExplodedByTrain = true;
-                Explode(((Vector2)transform.position - collision.contacts[0].point).normalized);
+                var contact = collision.contacts[0].point;
+                Instantiate(_explosionPrefab, contact, Quaternion.identity);
+                Explode(((Vector2)transform.position - contact).normalized);
             }
 
             if (AssignedOrder != null && AssignedOrder.Cargo == CargoType.Explosive && !_isExploded)
