@@ -1,5 +1,8 @@
 ﻿using Newtonsoft.Json;
 using System.IO;
+#if UNITY_WEBGL && !UNITY_EDITOR
+using System.Runtime.InteropServices;
+#endif
 using System.Security.Cryptography;
 using System.Text;
 using UnityEngine;
@@ -8,6 +11,14 @@ namespace Down2Jam.Manager.Persistency
 {
     public class PersistencyManager
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+    internal static class WebGLSyncFiles
+    {
+        [DllImport("__Internal")]
+        internal static extern void SyncFiles();
+    }
+#endif
+
         private static PersistencyManager _instance;
         public static PersistencyManager Instance
         {
@@ -56,6 +67,9 @@ namespace Down2Jam.Manager.Persistency
         public void Save()
         {
             File.WriteAllBytes(SaveFilePath, Encrypt(JsonConvert.SerializeObject(_saveData)));
+#if UNITY_WEBGL && !UNITY_EDITOR
+            WebGLSyncFiles.SyncFiles();
+#endif
         }
 
         // Encryption stuff, taken from https://github.com/Xwilarg/Sketch/blob/master/eu.zirk.sketch.persistency/Runtime/PersistencyManager.cs

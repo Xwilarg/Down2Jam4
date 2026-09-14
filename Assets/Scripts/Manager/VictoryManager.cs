@@ -50,7 +50,7 @@ namespace Down2Jam.Manager
 
             var minipiScore = totalCount == 0 ? 0 : (Mathf.CeilToInt((minipiCount / (float)totalCount) * 500f));
             var avrTime = minipiCount == 0 ? 10 : (totalTime / minipiCount);
-            var timeScore = Mathf.CeilToInt(500 - (avrTime * 500f / 10f));
+            var timeScore = Mathf.CeilToInt(500 - (avrTime * 500f / 10f)) + 20;
             var finalScore = timeScore + minipiScore;
 
             var levelName = LoaderManager.CurrentLevel.name;

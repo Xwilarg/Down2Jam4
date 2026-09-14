@@ -25,7 +25,7 @@ namespace Down2Jam.Manager
 
         private IEnumerator WaitAndReloadMain()
         {
-            yield return new WaitForSeconds(51.5f);
+            yield return new WaitForSeconds(52f);
             SceneManager.LoadScene("MainMenu");
         }
     }

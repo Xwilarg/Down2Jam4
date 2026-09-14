@@ -15,4 +15,4 @@ MonoBehaviour:
   Name: Cool minipis don't look at explosions
   UnlockExpl: Complete a level where at least 2 different minipis exploded while reachng their goal area
   Icon: {fileID: 8728512792583172563, guid: 4d8cd24792b0191468892c207a607642, type: 3}
-  Down2JamId: 430
+  Down2JamId: 624
